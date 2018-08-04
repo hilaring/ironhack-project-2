@@ -5,7 +5,7 @@
 ## Description
 
 Description about project!!!!!!!
- 
+
 ## User Stories
 
  - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault 
@@ -46,35 +46,53 @@ POST | /profile/:id/remove | - | /profile | Sí (ver verbo delete)
 
 ### Users:
 ```
-- id
-- name
-- password
-- email
-- role
-- courses []
-- timestamps {
-    create
-    update
-}
+name: {type: String, required: true},
+password: {type: String, required: true},
+email: {type: String, required: true, unique: true},
+phone: {type: number, unique: true},
+courses: {
+    *curso*: {type: String, enum:[{type: ObjectId, ref: 'Courses'}]}, 
+    checked: {type: Boolean, default: false}
+},
+timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 ```
 
 ### Courses:
 ```
-- id
-- name
-- description
-- category []
-- lessons [{
-    id
-    name
-    description
-    url
-}]
-- timestamps {
-    create
-    update
-}
+name: {type: String, require: true}
+description: {type: String}
+category: {type: String, enum: ['Desarrollo web', *por hacer*], required: true],
+lessons: {type: String, enum: [
+	{
+		name: {type: String, require: true}
+		description: {type: String}
+		url: {type: String, require: true}
+	}
+], required: true}
+timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
+  }
 ```
+
+## Backlog
+
+- Connect API of Facebook
+- Upload profile image
+- Search form about courses
+- Payment with PayPal or Stripe
+- Recommended courses 
+- Footer with about us page
+- Rating about courses
+- Role studend and teacher (Teacher can create courses, obviously xD)
+- Order and filter by category
+- Order by price
+- Create fauvorites
+- Certificate when the course is finished
+
 
 
 ## Links
@@ -87,7 +105,7 @@ POST | /profile/:id/remove | - | /profile | Sí (ver verbo delete)
 
 The url to your repository and to your deployed project
 
-[Repository Link](http://github.com)
+[Repository Link](https://github.com/laurarojeda/ironhack-project-2)
 
 [Deploy Link](http://heroku.com)
 
