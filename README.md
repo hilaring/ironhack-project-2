@@ -46,18 +46,20 @@ POST | /profile/:id/remove | - | /profile | Sí (ver verbo delete)
 
 ### Users:
 ```
-name: {type: String, required: true},
-password: {type: String, required: true},
-email: {type: String, required: true, unique: true},
-phone: {type: number, unique: true},
-courses: {
-    *curso*: {type: String, enum:[{type: ObjectId, ref: 'Courses'}]}, 
-    checked: {type: Boolean, default: false}
-},
+username: { type: String, required: true, unique: true },
+name: String,
+lastname: String, 
+password: { type: String, required: true },
+email: { type: String, required: true, unique: true },
+phone: { type: Number, unique: true },
+stats: {
+  cuourses: { type: String, enum: [{ type: Schema.Types.ObjectId, ref: 'Courses' }] },
+  checked: { type: Boolean, default: false }
+}, {
 timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+  createdAt: 'created_at',
+  updatedAt: 'updated_at'
+}
 ```
 
 ### Courses:
