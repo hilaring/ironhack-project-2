@@ -6,10 +6,11 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const flash = require('connect-flash');
+const flash = require('express-flash');
 
-const dbName = 'ih-project';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const db = mongoose.connection;
 db.on('error', () => {
