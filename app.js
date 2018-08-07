@@ -32,14 +32,14 @@ app.set('view engine', 'hbs');
 app.use(session({
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60
+    ttl: 24 * 60 * 60,
   }),
   secret: 'ih',
   resave: true,
   saveUninitialized: true,
   cookie: {
-    maxAge: 24 * 60 * 60 * 1000
-  }
+    maxAge: 24 * 60 * 60 * 1000,
+  },
 }));
 
 app.use(flash());
@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
