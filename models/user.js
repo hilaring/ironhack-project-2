@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema; // eslint-disable-line
 
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
@@ -15,8 +15,8 @@ const userSchema = new Schema({
       courses: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
       checked: { type: Boolean, default: false },
     },
-  ],
-  // timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  ] }, {
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 const User = mongoose.model('User', userSchema);
