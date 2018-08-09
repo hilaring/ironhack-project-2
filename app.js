@@ -21,6 +21,7 @@ db.on('open', () => {
 });
 
 const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 
 const app = express();
@@ -34,7 +35,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60,
   }),
-  secret: 'ih',
+  secret: 'toystory',
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -50,6 +51,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler

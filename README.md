@@ -52,32 +52,26 @@ lastname: String,
 password: { type: String, required: true },
 email: { type: String, required: true, unique: true },
 phone: { type: Number, unique: true },
-stats: {
-  cuourses: { type: String, enum: [{ type: Schema.Types.ObjectId, ref: 'Courses' }] },
-  checked: { type: Boolean, default: false }
-}, {
-timestamps: {
-  createdAt: 'created_at',
-  updatedAt: 'updated_at'
-}
+stats: [
+  {
+    courses: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+    checked: { type: Boolean, default: false },
+  },
+] }, {
+timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 ```
 
 ### Courses:
 ```
-name: {type: String, require: true}
-description: {type: String}
-category: {type: String, enum: ['Desarrollo web', *por hacer*], required: true],
-lessons: {type: String, enum: [
-	{
-		name: {type: String, require: true}
-		description: {type: String}
-		url: {type: String, require: true}
-	}
-], required: true}
-timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+name: { type: String, required: true, unique: true },
+  description: { type: String, required: true },
+  category: { type: String, required: true, enum: [] }, // Ej.: 'Desarrollo web', 'SEO'...
+  lessons: {
+    name: { type: String, required: true },
+    description: String,
+    url: String,
+  }, {
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 ```
 
 ## Backlog

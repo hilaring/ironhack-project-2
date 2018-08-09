@@ -11,7 +11,7 @@ const courseSchema = new Schema({
     description: String,
     url: String,
   }, {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },∫
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 const Course = mongoose.model('Course', courseSchema);
