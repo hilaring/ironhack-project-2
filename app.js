@@ -22,7 +22,8 @@ db.on('open', () => {
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
-const usersRouter = require('./routes/users');
+const profileRouter = require('./routes/profile');
+const coursesRouter = require('./routes/courses');
 
 const app = express();
 
@@ -52,7 +53,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
+app.use('/courses', coursesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
