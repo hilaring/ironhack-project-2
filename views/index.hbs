@@ -11,11 +11,20 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <div class="form-group form-check">
+            {{!-- <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div>
+            </div> --}}
+            <br>
+            {{message}}
+            <br>
             <button type="submit" class="button-css row align-items-center">Submit</button>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Don't have account yet?</label>
+              <form action="./auth/signup" method="POST">
+                <button type="submit" class="button-css">Sign up</button>
+              </form>
+            </div>
         </form>
     </section>
 </div>
