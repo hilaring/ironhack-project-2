@@ -57,7 +57,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res, next) => {
   const { email, password } = req.body;
-  console.log('olga')
+  console.log(email)
   if (!email || !password) {
     req.flash('info', 'The fields can\'t be empty!');
     res.redirect('/');
