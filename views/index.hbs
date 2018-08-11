@@ -1,32 +1,30 @@
 <div class="square-content align-middle">
     <h1 class="title-page text-center">Please log in!</h1>
-    <section class="form align-middle">
-        <form>
+    <section class="form">
+        <form action="/auth" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your@email.com">
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="your@email.com">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email... Muajaja</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             {{!--
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div> --}} 
+            </div> --}}
             {{message}}
-            <form action="/courses" method="GET">
-                <button type="submit" class="button-css row align-items-center">Submit</button>
+            <button type="submit" class="button-css row align-items-center">Submit</button>
+        </form>
+        <div class="form-group">
+            <form action="/auth/signup" method="GET">
+                <label for="exampleInputEmail1">New user?</label>
+                <input type="submit" value="Sign up" class="input-btn">
             </form>
-            <br>
-            <div class="form-group">
-                <form action="/auth/signup" method="GET">
-                    <label for="exampleInputEmail1">New user?</label>
-                    <input type="submit" value="Sign up" class="input-btn">
-                </form>
-            </div>
+        </div>
         </form>
     </section>
 </div>
