@@ -1,9 +1,17 @@
 const express = require('express');
+const Course = require('../models/course.js');
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.render('courses');
+  Course.find({})
+    .then((coursesArray) => {
+      console.log(coursesArray)
+      res.render('courses', { coursesArray });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;

@@ -1,1 +1,13 @@
-<h3>COURSES</h3>
+<!-- layout.hbs -->
+<div class="square-content align-middle"></div>
+  <h1 class="title-page text-center">Courses</h1>
+  {{#each coursesArray}}
+    {{name}}
+    <br>
+    <img src="{{url}}" alt="" srcset="">
+    <br>
+    {{description}}
+    <br>
+    {{category}}
+  {{/each}}
+</div>
