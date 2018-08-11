@@ -1,6 +1,6 @@
-<div class="square-content">
+<div class="square-content align-middle">
     <h1 class="title-page text-center">Please log in!</h1>
-    <section class="form">
+    <section class="form align-middle">
         <form>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -11,19 +11,21 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            {{!-- <div class="form-group form-check">
+            {{!--
+            <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div> --}}
-            <br>
-            <span>{{message}}</span>
-            <button type="submit" class="button-css row align-items-center">Submit</button>
+            </div> --}} 
+            {{message}}
+            <form action="/courses" method="GET">
+                <button type="submit" class="button-css row align-items-center">Submit</button>
+            </form>
             <br>
             <div class="form-group">
-              <label for="exampleInputEmail1">New user?</label>
-              <form action="/auth/signup" method="GET">
-                <button type="submit" class="button-css">Sign up</button>
-              </form>
+                <form action="/auth/signup" method="GET">
+                    <label for="exampleInputEmail1">New user?</label>
+                    <input type="submit" value="Sign up" class="input-btn">
+                </form>
             </div>
         </form>
     </section>

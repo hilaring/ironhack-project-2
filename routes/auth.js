@@ -49,30 +49,30 @@ router.post('/signup', (req, res, next) => {
   }
 });
 
-// LOGIN
+// LOG IN
 router.get('/', (req, res) => {
   const data = { message: req.flash('info') };
   res.render('/', data);
 });
 
 router.post('/', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     req.flash('info', 'The fields can\'t be empty!');
     res.redirect('/');
   } else {
-    User.findOne({ username })
+    User.findOne({ email })
       .then((user) => {
         if (user) {
           if (bcrypt.compareSync(password, user.password)) {
             req.session.currentUser = user;
             res.redirect('/courses');
           } else {
-            req.flash('info', 'Your username or password is incorrect :(');
-            res.redirect('/')
+            req.flash('info', 'Your email or password is incorrect :(');
+            res.redirect('/');
           }
         } else {
-          req.flash('info', 'Your username or password is incorrect :(');
+          req.flash('info', 'Your email or password is incorrect :(');
           res.redirect('/');
         }
       })

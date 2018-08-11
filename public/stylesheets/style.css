@@ -2,14 +2,14 @@
 
 body {
   font: 14px 'Montserrat', sans-serif;
-  background-image: url("/images/background.jpg")
+  background-image: url("/images/background.jpg");
 }
 
 @media (max-width: 410px) {
   .form {
     margin: auto;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    /* padding-top: 60px;
+    padding-bottom: 60px; */
     max-width: 300px;
   }
   .content {
@@ -30,18 +30,31 @@ body {
     padding-bottom: 10px;
     max-width: 300px;
   }
+  
   .square-content {
     margin-top: 60px;
     background-color: white;
     border-radius: 5px;
   }
-  .icon-navbar{
+
+  .square-content-signup {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  .icon-navbar {
     color: white;
+  }
+
+  .input-btn {
+    color: #a41e34;
   }
 }
 
 a {
   color: #00B7FF;
+  font-weight: 800;
 }
 
 /* h1 {
