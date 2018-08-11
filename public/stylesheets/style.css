@@ -50,6 +50,11 @@ body {
   .input-btn {
     color: #a41e34;
   }
+  .square-course {
+    margin-top: 60px;
+    background-color: white;
+    border-radius: 5px;
+  }
 }
 
 a {
@@ -82,7 +87,7 @@ li {
 }
 
 .navbar-style {
-  background-color: #a41e34;
+  background-color: #a41e34; 
 }
 
 .navbar-title {
