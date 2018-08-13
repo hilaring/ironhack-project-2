@@ -5,14 +5,8 @@ const Course = require('../models/course.js');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  User.find({})
-    .then((user) => {
-      console.log(user)
-      res.render('private/profile');
-    })
-    .catch((error) => {
-      next(error);
-    });
+  const user = req.session.currentUser;
+  res.render('profile', user);
 });
 
 module.exports = router;
