@@ -57,7 +57,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email)
   if (!email || !password) {
     req.flash('info', 'The fields can\'t be empty!');
     res.redirect('/');
@@ -66,7 +65,6 @@ router.post('/', (req, res, next) => {
       .then((user) => {
         if (user) {
           if (bcrypt.compareSync(password, user.password)) {
-            console.log('login')
             req.session.currentUser = user;
             res.redirect('/courses');
           } else {
@@ -74,7 +72,6 @@ router.post('/', (req, res, next) => {
             res.redirect('/');
           }
         } else {
-          console.log('no login')
           req.flash('info', 'Your email or password is incorrect :(');
           res.redirect('/');
         }

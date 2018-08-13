@@ -9,7 +9,7 @@ const userSchema = new Schema({
   age: Number,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  phone: { type: Number, unique: true },
+  phone: Number,
   stats: [
     {
       courses: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },

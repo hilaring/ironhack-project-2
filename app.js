@@ -34,7 +34,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60,
   }),
-  secret: 'toystory',
+  secret: process.env.MONGODB_SECRET,
   resave: true,
   saveUninitialized: true,
   cookie: {
@@ -51,8 +51,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/profile', profileRouter);
 app.use('/courses', coursesRouter);
+app.use('/profile', (req, res, next) => {
+  if (req.session.currentUser) {
+    next();
+  } else {
+    req.flash('info', 'You have to login!');
+    res.redirect('/');
+  }
+}, profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
