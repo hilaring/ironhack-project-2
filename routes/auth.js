@@ -9,8 +9,8 @@ const User = require('../models/user');
 
 // SIGN UP
 router.get('/signup', (req, res) => {
-  const data = { message: req.flash('info') };
-  res.render('auth/signup', data);
+  const message = { message: req.flash('info') };
+  res.render('auth/signup', { message, header: 'Sign up' });
 });
 
 router.post('/signup', (req, res, next) => {
@@ -51,8 +51,8 @@ router.post('/signup', (req, res, next) => {
 
 // LOG IN
 router.get('/', (req, res) => {
-  const data = { message: req.flash('info') };
-  res.render('/', data);
+  const message = { message: req.flash('info') };
+  res.render('/', message);
 });
 
 router.post('/', (req, res, next) => {
