@@ -10,15 +10,13 @@ const flash = require('connect-flash');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URI);
-
-const db = mongoose.connection;
-db.on('error', () => {
-  console.error.bind(console, 'Conection error to db:');
-});
-db.on('open', () => {
-  console.log('Conected to mongodb');
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then((connection) => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.log(error.message);
+  })
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
