@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   Course.find({})
     .then((coursesArray) => {
-      res.render('courses', { coursesArray });
+      res.render('courses/list', { coursesArray });
     })
     .catch((error) => {
       next(error);

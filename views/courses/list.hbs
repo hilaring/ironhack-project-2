@@ -1,0 +1,17 @@
+<!-- layout.hbs -->
+<h1 class="title-courses-page text-center">Courses</h1>
+{{#each coursesArray}}
+<div class="square-content-courses">
+  <div class="title-course text-center">{{name}}</div>
+  <br>
+  <div class="text-center">
+    <img src="{{image}}" alt="" srcset="">
+  </div>
+  <br>
+  <p class="course-description">{{description}}</p>
+  <div>
+    <button class="button-css-info row align-items-center">Read more</button>
+  </div>
+</div>
+{{/each}}
+</div>
