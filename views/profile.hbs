@@ -1,11 +1,14 @@
 <!-- layout.hbs -->
-<h1 class="text-center">Profile of {{name}}</h1>
-<h5>Personal information</h5>
-
-<p>{{username}}</p>
-<p>{{name}}</p>
-<p>{{lastname}}</p>
-<p>{{birth}}</p>
-<p>{{email}}</p>
-<p>{{phone}}</p>
-
+<h1 class="text-center">Welcome {{name}}!</h1>
+<div class="square-content-profile">
+    <div class="content-profile">
+        <h5>Personal information</h5>
+        <br>
+        <p><span class="user-information">Username: </span><span>{{username}}</span></p>
+        <p><span class="user-information">Name: </span><span>{{name}}</span></p>
+        <p><span class="user-information">Last name: </span><span>{{lastname}}</span></p>
+        <p><span class="user-information">Birthday: </span><span>{{birth}}</span></p>
+        <p><span class="user-information">Email: </span><span>{{email}}</span></p>
+        <p><span class="user-information">Phone: </span><span>{{phone}}</span></p>
+    </div>
+</div>

@@ -68,7 +68,21 @@ body {
     border-radius: 5px;
     box-shadow: 3px 4px grey;
   }
+
+  .square-content-profile {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .user-information {
+    font-weight: 600;
+  }
   
+  .content-profile {
+    padding: 50px 50px;
+  }
+
   .icon-navbar {
     color: white;
   }
@@ -84,7 +98,7 @@ body {
   }
 }
 
-@media (max-width: 992px) {
+@media (min-width: 737px) and (max-width: 992px) {
   .form {
     margin: auto;
     max-width: 300px;
