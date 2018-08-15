@@ -1,0 +1,22 @@
+<!-- layout.hbs -->
+<form action="/profile/{{_id}}/detail" method="post">
+  <label for="">Username:</label>
+  <input type="text" name="username" value="{{username}}">
+
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{name}}">
+
+  <label for="">Lastname:</label>
+  <input type="text" name="lastname" value="{{lastname}}">
+
+  <label for="">Birth:</label>
+  <input type="date" name="birth" value="{{birth}}">
+
+  <label for="">Email:</label>
+  <input type="email" name="email" value="{{email}}">
+
+  <label for="">Phone:</label>
+  <input type="tel" name="phone" value="{{phone}}">
+
+  <button type="submit">Update</button>
+</form>
