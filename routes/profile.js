@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   res.render('profile/detail', user);
 });
 
-router.get('/:id/edit/', (req, res, next) => {
+router.get('/:id/edit', (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {
