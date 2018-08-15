@@ -28,13 +28,13 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id/add', (req, res, next) => {
   const { id } = req.params;
   const user = req.session.currentUser;
-  const message = { message: req.flash('info') };
+  const message = { messages: req.flash('info') };
   if (user) {
-    User.push(id)
+    User.findById(id)
       .populate('Course')
       .then(() => {
         req.flash('info', 'Add course successfully');
-        res.redirect('courses/detail', message);
+        res.redirect('/:id', message);
       })
       .catch((error) => {
         next(error);

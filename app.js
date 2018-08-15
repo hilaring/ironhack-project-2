@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((connection) => {
     console.log('Connected to MongoDB');
   })
