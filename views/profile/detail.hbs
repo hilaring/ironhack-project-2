@@ -11,5 +11,17 @@
         <p><span class="user-information">Email: </span><span>{{email}}</span></p>
         <p><span class="user-information">Phone: </span><span>{{phone}}</span></p>
         <p><a class="input-btn" href="/profile/{{_id}}/edit">Edit</a></p>
+        <form action="/profile/{{_id}}/delete" method="post">
+            <input type="submit" value="delete">
+        </form>
     </div>
+</div>
+<div>
+    <h3>My courses</h3>
+    {{#each courseArray}}
+    <h5>Course #1</h5>
+    <form action="/profile/{{_id}}/delete" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+    {{/each}}
 </div>

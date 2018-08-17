@@ -25,16 +25,15 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/:id/add', (req, res, next) => {
-  const { id } = req.params;
+router.post('/:id', (req, res, next) => {
+  const { id } = req.params.id;
   const user = req.session.currentUser;
   const message = { messages: req.flash('info') };
   if (user) {
-    User.findById(id)
-      .populate('Course')
+    User.findByIdandUpdate(user, { $push: { courses: id } })
       .then(() => {
         req.flash('info', 'Add course successfully');
-        res.redirect('/:id', message);
+        res.redirect('/', message);
       })
       .catch((error) => {
         next(error);

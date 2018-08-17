@@ -9,6 +9,20 @@ router.get('/', (req, res) => {
   res.render('profile/detail', user);
 });
 
+// EDIT
+router.post('/:id/detail', (req, res, next) => {
+  const { id } = req.params;
+  const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
+  User.findByIdAndUpdate(id, { username, name, lastname, birth, email, phone }, { new: true }) // eslint-disable-line
+    .then((user) => {
+      req.session.currentUser = user;
+      res.redirect('/:id/profile', user);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 router.get('/:id/edit', (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
@@ -17,26 +31,19 @@ router.get('/:id/edit', (req, res, next) => {
     })
     .catch((error) => {
       next(error);
-    })
-})
+    });
+});
 
-router.post('/:id/detail', (req, res, next) => {
+// DELETE USER ACCOUNT
+router.post('/:id/delete', (req, res, next) => {
   const { id } = req.params;
-  const { username, name, lastname, birth, email, phone } = req.body;
-  User.findByIdAndUpdate(id, { username, name, lastname, birth, email, phone })
+  User.findByIdAndRemove(id)
     .then(() => {
-      User.findById(id)
-        .then((user) => {
-          req.session.currentUser = user;
-          res.redirect('/profile');
-        })
-        .catch((error) => {
-          next(error);
-        })
+      res.redirect('/');
     })
     .catch((error) => {
       next(error);
-    })
+    });
 });
 
 module.exports = router;
