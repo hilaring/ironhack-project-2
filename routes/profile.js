@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   res.render('profile/detail', user);
 });
 
-// EDIT
+// EDIT USER PROFILE
 router.post('/:id/detail', (req, res, next) => {
   const { id } = req.params;
   const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
@@ -39,6 +39,7 @@ router.post('/:id/delete', (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndRemove(id)
     .then(() => {
+      req.session.destroy();
       res.redirect('/');
     })
     .catch((error) => {
