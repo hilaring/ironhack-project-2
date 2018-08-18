@@ -7,6 +7,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const user = req.session.currentUser;
   res.render('profile/detail', user);
+
+console.log(user.birth)
 });
 
 // EDIT USER PROFILE

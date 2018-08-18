@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Course.find({})
+    .sort({ name: 1 })
     .then((coursesArray) => {
       res.render('courses/list', { coursesArray, header: 'Courses' });
     })
@@ -23,22 +24,6 @@ router.get('/:id', (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-});
-
-router.post('/:id', (req, res, next) => {
-  const { id } = req.params.id;
-  const user = req.session.currentUser;
-  const message = { messages: req.flash('info') };
-  if (user) {
-    User.findByIdandUpdate(user, { $push: { courses: id } })
-      .then(() => {
-        req.flash('info', 'Add course successfully');
-        res.redirect('/', message);
-      })
-      .catch((error) => {
-        next(error);
-      });
-  }
 });
 
 module.exports = router;

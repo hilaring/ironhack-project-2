@@ -16,12 +16,3 @@
         </form>
     </div>
 </div>
-<div>
-    <h3>My courses</h3>
-    {{#each courseArray}}
-    <h5>Course #1</h5>
-    <form action="/profile/{{_id}}/delete" method="POST">
-        <button type="submit">Delete</button>
-    </form>
-    {{/each}}
-</div>
