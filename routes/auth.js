@@ -29,8 +29,8 @@ router.post('/signup', (req, res, next) => {
           res.redirect('/auth/signup');
         } else {
           User.create({
-            name, 
-            lastname, 
+            name,
+            lastname,
             birth,
             phone,
             username,

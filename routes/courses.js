@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Course.find({})
+    .sort({ name: 1 })
     .then((coursesArray) => {
       res.render('courses/list', { coursesArray, header: 'Courses' });
     })
@@ -56,19 +57,3 @@ router.post('/:id/add', (req, res, next) => {
 });
 
 module.exports = router;
-
-// router.post('/:_id/follow', isLoggedIn('/'), (req, res, next) => {
-//   /* eslint-disable */
-//   const userId = req.user._id;
-//   const userRol = req.user.collection.collectionName;
-//   const campaignId = req.params._id;
-//   /* eslint-enable */
-//   if (userRol === 'influencers') {
-//     Campaign.findByIdAndUpdate(campaignId, { $push: { influencer_id: userId } })
-//       .exec((err, result) => {
-//         res.status(200).json(result);
-//       });
-//   } else if (userRol === 'companies') {
-//     res.redirect(`/${req.user.username}`);
-//   }
-// });
