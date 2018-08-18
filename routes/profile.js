@@ -5,15 +5,20 @@ const Course = require('../models/course.js'); // eslint-disable-line
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  const user = req.session.currentUser;
-  res.render('profile/detail', user);
+  let user = req.session.currentUser;
+  const userId = req.session.currentUser._id;
+  User.findById(userId).populate('stats.courses')
+    .then((resultUser) => {
+      res.render('profile/detail', resultUser);
+    });
+  // console.log(user.stats);
 });
 
 // EDIT USER PROFILE
 router.post('/:id/detail', (req, res, next) => {
   const { id } = req.params;
-  const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
-  User.findByIdAndUpdate(id, { username, name, lastname, birth, email, phone }, { new: true }) // eslint-disable-line
+  const { username, name, lastname, birth, email, phone} = req.body; // eslint-disable-line
+  User.findByIdAndUpdate(id, { username, name, lastname, birth, email, phone}, { new: true }) // eslint-disable-line
     .then(() => {
       res.redirect('/profile');
     })
