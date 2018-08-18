@@ -1,5 +1,10 @@
 <!-- layout.hbs -->
-<p>{{name}}</p>
-<img src="{{image}}" alt="" srcset="">
-<p>{{description}}</p>
-<a href="/:id" id="add" value="{{_id}}" user="">Add</a>
+<div class="square-content-courses">
+    <div class="title-course text-center">{{name}}</div>
+    <br>
+    <div>
+    <p class="course-resume">{{temary}}</p>
+    </div>
+    <div  class="row align-items-center"><iframe class="course-resume" src="{{video}}"></iframe></div>
+    <button id="add" type="submit" value="{{_id}}" class="button-css row align-items-center">Add</button>
+</div>

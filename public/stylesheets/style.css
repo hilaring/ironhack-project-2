@@ -75,6 +75,11 @@ body {
     border-radius: 5px;
   }
 
+  .course-resume {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
   .user-information {
     font-weight: 600;
   }
@@ -107,6 +112,14 @@ body {
   .content {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  .header-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: white;
   }
 
   .title-page {
@@ -209,6 +222,16 @@ h1 {
   font-size: 14px;
 }
 
+.see-more-btn {
+  margin: auto;
+  background-color: #a41e34;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 0px;
+  font-weight: 500;
+}
+
 li {
   display: inline;
 }
@@ -233,4 +256,5 @@ li {
   background-color: #a41e34;
   color: white;
   padding-top: 5px;
+  margin-top: 500px;
 }
