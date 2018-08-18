@@ -5,8 +5,10 @@ const Schema = mongoose.Schema; // eslint-disable-line
 const courseSchema = new Schema({
   name: { type: String, required: true, unique: true },
   image: String,
-  description: { type: String, required: true },
+  resume: { type: String, required: true },
+  temary: { type: String, required: true },
   category: { type: String, required: true, enum: [] }, // Ej.: 'Desarrollo web', 'SEO'...
+  video: { type: String },
   // lessons: {
   //   name: { type: String, required: true },
   //   description: String,
