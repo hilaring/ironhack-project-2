@@ -14,9 +14,8 @@ router.post('/:id/detail', (req, res, next) => {
   const { id } = req.params;
   const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
   User.findByIdAndUpdate(id, { username, name, lastname, birth, email, phone }, { new: true }) // eslint-disable-line
-    .then((user) => {
-      req.session.currentUser = user;
-      res.redirect('/:id/profile', user);
+    .then(() => {
+      res.redirect('/profile');
     })
     .catch((error) => {
       next(error);
