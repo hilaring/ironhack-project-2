@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
   const userId = req.session.currentUser._id; // eslint-disable-line
   User.findById(userId).populate('stats.courses')
     .then((resultUser) => {
-      console.log('entro')
       res.render('profile/detail', resultUser);
     });
 });

@@ -12,19 +12,26 @@
         <p><span class="user-information">Phone: </span><span>{{phone}}</span></p>
         <p><a class="input-btn" href="/profile/{{_id}}/edit">Edit</a></p>
         <form action="/profile/{{_id}}/delete" method="post">
-            <input type="submit" value="Delete Account">
+            <input class="input-btn" type="submit" value="Delete Account">
         </form>
     </div>
     <br>
+</div>
+
+<div class="square-content-profile">
     <div class="content-profile">
         <h5>My courses</h5>
         {{#each stats}}
-        <ul>
-            <li class="user-information">{{courses.name}}
-            <a class="input-btn" href="courses/{{id}}">Study now!</a>
-            <form  action="/profile/{{courseId}}/delete" method="post">
-                <input type="submit" value="Delete course">
-            </form>
+        <ul class="list-group list-group-flush">
+            <li class="user-information list-group-item">{{courses.name}}
+                <a class="input-btn" href="courses/{{id}}">Study!</a>
+                <form action="">
+                    <input type="checkbox" name="check" value="complete">✓
+                </form>
+                <form action="/profile/{{id}}/delete" method="post">
+                    <input class="input-btn" type="submit" value="Delete course">
+                </form>
+    
             </li>
         </ul>
         {{/each}}
