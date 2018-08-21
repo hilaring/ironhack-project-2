@@ -9,6 +9,7 @@ const courseSchema = new Schema({
   temary: { type: String, required: true },
   category: { type: String, required: true, enum: [] }, // Ej.: 'Desarrollo web', 'SEO'...
   video: { type: String },
+  // students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   // lessons: {
   //   name: { type: String, required: true },
   //   description: String,

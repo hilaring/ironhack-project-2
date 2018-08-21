@@ -30,7 +30,7 @@ router.post('/:id/add', (req, res, next) => {
   const courseId = req.params.id;
   const userID = req.session.currentUser._id;
   const message = { messages: req.flash('info') };
-  
+
 
   if (userID) {
     // User.findByIdAndUpdate(user, { $push: { stats: { courses: courseId } } })
@@ -51,7 +51,7 @@ router.post('/:id/add', (req, res, next) => {
           });
       })
       .catch((error) => {
-        res.status(500).json({error})
+        res.status(500).json({ error })
       });
   }
 });

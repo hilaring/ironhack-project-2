@@ -15,12 +15,19 @@
             <input type="submit" value="Delete Account">
         </form>
     </div>
-</div>
-<br>
-<div>
-    <h5>My courses</h5>
-    {{#each stats}}
-        {{courses.name}}
-    {{/each}}
+    <br>
+    <div class="content-profile">
+        <h5>My courses</h5>
+        {{#each stats}}
+        <ul>
+            <li class="user-information">{{courses.name}}
+            <a class="input-btn" href="courses/{{id}}">Study now!</a>
+            <form  action="/profile/{{courseId}}/delete" method="post">
+                <input type="submit" value="Delete course">
+            </form>
+            </li>
+        </ul>
+        {{/each}}
+    </div>
 </div>
 
