@@ -23,13 +23,11 @@
         <h5>My courses</h5>
         {{#each stats}}
         <ul class="list-group list-group-flush">
-            <li class="user-information list-group-item">{{courses.name}}
-                <a class="input-btn" href="courses/{{id}}">Study!</a>
-                <form action="">
-                    <input type="checkbox" name="check" value="complete">✓
-                </form>
-                <form action="/profile/{{id}}/delete" method="post">
-                    <input class="input-btn" type="submit" value="Delete course">
+            <li class="list-group-item">{{courses.name}}
+                <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
+                <input id="checkbox" type="checkbox" name="check" value="Done">
+                <form action="/profile/{{courses.id}}/remove" method="post">
+                    <input class="input-btn" type="submit" value="Delete course"> 
                 </form>
     
             </li>
