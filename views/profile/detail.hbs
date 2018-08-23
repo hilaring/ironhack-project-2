@@ -25,11 +25,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">{{courses.name}}
                 <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
-                <input id="checkbox" type="checkbox" name="check" value="Done">
-                <form action="/profile/{{courses.id}}/remove" method="post">
-                    <input class="input-btn" type="submit" value="Delete course"> 
-                </form>
-    
+                <input id="checkbox" type="checkbox" name="check" value="Done">Done
+                <button id="remove-course" type="submit" value="{{this._id}}" class="input-btn remove-course">Remove</button>
             </li>
         </ul>
         {{/each}}

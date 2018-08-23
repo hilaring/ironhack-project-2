@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 $(document).ready(() => {
     $('#add').on('click', () => {
         console.log('hola')
@@ -17,5 +16,25 @@ $(document).ready(() => {
             },
         })
     });
+
+    $('.remove-course').on('click', () => {
+        console.log('remove')
+        const courseId = $('.remove-course').attr('value');
+        console.log(courseId)
+        $.ajax({
+            url: `http://localhost:3333/profile/${courseId}/remove`,
+            method: 'POST',
+            // dataType: 'text',
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (error) {
+                console.log('error:', error);
+            },
+        })
+    });
 });
+
+
+
 /* eslint-enable */

@@ -26,21 +26,12 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.post('/:id/add', (req, res, next) => {
+router.post('/:id/add', (req, res, next) => { //eslint-disable-line
   const courseId = req.params.id;
-  const userID = req.session.currentUser._id;
-  const message = { messages: req.flash('info') };
-
+  const userID = req.session.currentUser._id; //eslint-disable-line
+  const message = { messages: req.flash('info') }; //eslint-disable-line
 
   if (userID) {
-    // User.findByIdAndUpdate(user, { $push: { stats: { courses: courseId } } })
-    //   .then((result) => {
-    //     req.flash("info", "Add course successfully");
-    //     res.status(200).json(result);
-    //   })
-    //   .catch((error) => {
-    //     next(error);
-    //   });
     User.findById(userID)
       .then((user) => {
         user.stats.push({ courses: courseId, checked: false });
@@ -51,7 +42,7 @@ router.post('/:id/add', (req, res, next) => {
           });
       })
       .catch((error) => {
-        res.status(500).json({ error })
+        res.status(500).json({ error });
       });
   }
 });
