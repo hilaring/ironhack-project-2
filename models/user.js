@@ -14,7 +14,7 @@ const userSchema = new Schema({
     {
       courses: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
       checked: { type: Boolean, default: false },
-    }] 
+    }] // eslint-disable-line
   }, { // eslint-disable-line
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });

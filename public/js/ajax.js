@@ -15,6 +15,7 @@ $(document).ready(() => {
                 console.log('error:', error);
             },
         })
+        $('#add').text('✔');
     });
 
     $('.remove-course').on('click', () => {

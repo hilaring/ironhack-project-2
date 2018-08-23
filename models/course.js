@@ -16,7 +16,7 @@ const courseSchema = new Schema({
   //     description: String,
   //     video: String,
   //   }] // eslint-disable-line
-  // }, { // eslint-disable-line
+  }, { // eslint-disable-line
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 

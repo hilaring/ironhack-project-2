@@ -39,11 +39,23 @@ router.post('/:id/add', (req, res, next) => { //eslint-disable-line
           .then(() => {
             req.flash('info', 'Add course successfully');
             res.status(200).json({ courseId });
+          })
+          .catch((error) => {
+            next(error);
           });
       })
       .catch((error) => {
         res.status(500).json({ error });
       });
+
+    // Course.findById(courseId)
+    //   .then((course) => {
+    //     course.push({ students: userID });
+    //     course.save()
+    //   })
+    //   .catch((error) => {
+    //     next(error);
+    //   });
   }
 });
 
