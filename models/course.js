@@ -8,15 +8,16 @@ const courseSchema = new Schema({
   resume: { type: String, required: true },
   temary: { type: String, required: true },
   category: { type: String, required: true, enum: [] }, // Ej.: 'Desarrollo web', 'SEO'...
-  video: { type: String },
-  // students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  // lessons: {
-  //   name: { type: String, required: true },
-  //   description: String,
-  //   url: String,
-  }, 
-  {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  video: String,
+  students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  // lessons: [
+  //   {
+  //     name: { type: String, required: true },
+  //     description: String,
+  //     video: String,
+  //   }] // eslint-disable-line
+  // }, { // eslint-disable-line
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 });
 
 const Course = mongoose.model('Course', courseSchema);
