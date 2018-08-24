@@ -56,7 +56,7 @@ router.post('/:id/delete', (req, res, next) => {
 router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
   const userID = req.session.currentUser._id; //eslint-disable-line
   const courseId = req.params.id;
-  User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } })
+  User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
     .exec((err, result) => {
       res.status(200).json(result);
     });

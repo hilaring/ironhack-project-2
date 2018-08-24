@@ -1,9 +1,8 @@
 /* eslint-disable */
 $(document).ready(() => {
     $('#add').on('click', () => {
-        console.log('hola')
+        console.log('add course')
         const courseId = $('#add').attr('value');
-        // let user = req.session.currentUser;
 
         $.ajax({
             url: `http://localhost:3333/courses/${courseId}/add`,
@@ -19,13 +18,13 @@ $(document).ready(() => {
     });
 
     $('.remove-course').on('click', () => {
-        console.log('remove')
+        console.log('remove course')
         const courseId = $('.remove-course').attr('value');
         console.log(courseId)
+
         $.ajax({
             url: `http://localhost:3333/profile/${courseId}/remove`,
             method: 'POST',
-            // dataType: 'text',
             success: function (res) {
                 console.log(res);
             },
@@ -33,9 +32,10 @@ $(document).ready(() => {
                 console.log('error:', error);
             },
         })
+        $('.hide').click(function() {
+            $(this).slideUp();
+        })
     });
 });
-
-
 
 /* eslint-enable */
