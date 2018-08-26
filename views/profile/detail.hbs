@@ -21,16 +21,21 @@
 <div class="square-content-profile">
     <div class="content-profile">
         <h5>My courses</h5>
-        {{#each stats}}
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item hide">
-                <p>{{courses.name}}</p>
-                <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
-                <input id="checkbox" type="checkbox" name="check"><label for="checkbox">Complete</label>
-                <button type="submit" value="{{this._id}}" class="input-btn remove-course">✘</button>
-            </li>
-        </ul>
-        {{/each}}
+        {{#if stats.length}}
+            {{#each stats}}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item hide">
+                    <p>{{courses.name}}</p>
+                    <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
+                    <input id="checkbox" type="checkbox" name="check"><label for="checkbox">Complete</label>
+                    <button type="submit" value="{{this._id}}" class="input-btn remove-course">✘</button>
+                </li>
+            </ul>
+            {{/each}}
+        {{else}}
+        <p>You don't suscribe at any course yet :(</p>
+        <p><a class="input-btn" href="/courses">Check our awesome courses!</a></p>
+        {{/if}}
     </div>
 </div>
 
