@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const User = require('../models/user');
-const isUserLoggedOut = require('../middlewares/isUserLogged');
+const isUserLoggedOut = require('../middlewares/isUserLoggedOut');
 
 // SIGN UP
 router.get('/signup', isUserLoggedOut, (req, res) => {
@@ -40,8 +40,11 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
             password: hashedPassword,
           })
             .then((newUser) => {
-              req.flash('info', 'You create a new user :)');
-              res.redirect('/');
+              if (newUser) {
+                req.session.currentUser = newUser;
+                req.flash('info', 'You create a new user :)');
+                res.redirect('/courses');
+              }
             })
             .catch((error) => {
               next(error);
