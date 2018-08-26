@@ -6,15 +6,16 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const User = require('../models/user');
-const isUserLogged = require('../middlewares/isUserLogged');
+const isUserLoggedOut = require('../middlewares/isUserLogged');
 
 // SIGN UP
-router.get('/signup', (req, res) => {
+router.get('/signup', isUserLoggedOut, (req, res) => {
   const message = { messages: req.flash('info') };
-  res.render('auth/signup', { message, header: 'Sign up' });
+  const signUp = 'Sign up';
+  res.render('auth/signup', { message, header: signUp });
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', isUserLoggedOut, (req, res, next) => {
   const { username, name, lastname, birth, email, password, phone } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
@@ -51,12 +52,12 @@ router.post('/signup', (req, res, next) => {
 });
 
 // LOG IN
-router.get('/', (req, res) => {
+router.get('/', isUserLoggedOut, (req, res) => {
   const message = { messages: req.flash('info') };
   res.render('/', message);
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', isUserLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
     req.flash('info', 'The fields can\'t be empty!');
