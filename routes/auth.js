@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const User = require('../models/user');
+const isUserLogged = require('../middlewares/isUserLogged');
 
 // SIGN UP
 router.get('/signup', (req, res) => {

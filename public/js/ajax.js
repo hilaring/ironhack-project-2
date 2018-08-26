@@ -32,6 +32,7 @@ $(document).ready(() => {
                 console.log('error:', error);
             },
         })
+
         $('.hide').click(function() {
             $(this).slideUp();
         })

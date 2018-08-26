@@ -1,10 +1,11 @@
 const express = require('express');
 const User = require('../models/user'); // eslint-disable-line
 const Course = require('../models/course.js'); // eslint-disable-line
+const isUserLogged = require('../middlewares/isUserLogged');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', isUserLogged, (req, res) => {
   const userId = req.session.currentUser._id; // eslint-disable-line
   User.findById(userId).populate('stats.courses')
     .then((resultUser) => {

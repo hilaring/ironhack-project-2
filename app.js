@@ -52,14 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/courses', coursesRouter);
-app.use('/profile', (req, res, next) => {
-  if (req.session.currentUser) {
-    next();
-  } else {
-    req.flash('info', 'You have to login!');
-    res.redirect('/');
-  }
-}, profileRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
