@@ -7,10 +7,11 @@ $(document).ready(() => {
         $.ajax({
             url: `http://localhost:3333/courses/${courseId}/add`,
             method: 'POST',
-            success: function (res) {
+            success: (req, res, next) => {
                 console.log(res);
+                console.log(courseId)
             },
-            error: function (error) {
+            error: (error) => {
                 console.log('error:', error);
             },
         })
@@ -19,16 +20,16 @@ $(document).ready(() => {
 
     $('.remove-course').on('click', () => {
         console.log('remove course')
-        const courseId = $('.remove-course').attr('value');
-        console.log(courseId)
+        const courseId = $(event.target).attr('value');
 
         $.ajax({
             url: `http://localhost:3333/profile/${courseId}/remove`,
             method: 'POST',
-            success: function (res) {
+            success: (req, res, next) => {
                 console.log(res);
+                console.log(courseId)
             },
-            error: function (error) {
+            error: (error) => {
                 console.log('error:', error);
             },
         })
