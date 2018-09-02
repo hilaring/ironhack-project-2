@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+const favicon = require('serve-favicon');
 
 require('dotenv').config();
 
@@ -28,6 +29,7 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
   store: new MongoStore({
@@ -69,7 +71,7 @@ app.use((err, req, res, next) => {
       res.status(err.status || 404);
       res.render('errors/error404')
       break;
-    case 500:  
+    case 500:
       res.status(err.status || 500);
       res.render('errors/error500');
       break;
