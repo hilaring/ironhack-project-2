@@ -15,6 +15,25 @@ router.get('/', (req, res, next) => {
     });
 });
 
+// FIND COURSES
+router.post('/search', (req, res, next) => {
+  const searchInput = req.body.query;
+  Course.find({
+    $text: {
+      $search: searchInput,
+      $caseSensitive: false,
+      $diacriticSensitive: false,
+    },
+  }).sort({ name: 1 })
+    .then((result) => {
+      res.render('courses/search', { result });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// COURSE DETAIL
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Course.findById(id)
@@ -26,6 +45,7 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+// ADD A COURSE
 router.post('/:id/add', (req, res, next) => { //eslint-disable-line
   const courseId = req.params.id;
   const userID = req.session.currentUser._id; //eslint-disable-line

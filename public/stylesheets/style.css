@@ -258,3 +258,46 @@ li {
   padding-top: 5px;
   margin-top: 500px;
 }
+
+/* SEARCH FORM */
+.search-container {
+  margin-top: 35px;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-form input {
+  border-right: 0px;
+  width: 130px;
+  transition: width 0.4s ease-in-out;
+}
+
+.search-form input:focus {
+  width: 90%;
+  outline: 0;
+}
+
+.search-form input button {
+  margin: 0;
+}
+
+.search-form button {
+  width: 10%;
+}
+
+.search-form button i{
+  color: black
+}
+
+.search-form button:hover{
+  background: #a41e34;
+}
+
+.search-form button:focus,
+ input:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}

@@ -1,15 +1,24 @@
 <!-- layout.hbs -->
+<div class="align-items-center search-container">
+  <form class="search-form" action="/courses/search" method="POST">
+    <input class="form-control" type="search" placeholder="Search..." name="query" id="search-courses">
+    <button class="btn" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>
+
 {{#each coursesArray}}
-<div class="square-content-courses">
-  <div class="title-course text-center">{{name}}</div>
-  <br>
-  <div class="text-center">
-    <img src="{{image}}" alt="" srcset="">
+  <div class="square-content-courses">
+    <div class="title-course text-center">{{name}}</div>
+    <br>
+    <div class="text-center">
+      <img src="{{image}}" alt="" srcset="">
+    </div>
+    <br>
+    <p class="course-resume">{{resume}}</p>
+    <div class="row align-items-center">
+      <a class="see-more-btn" href="/courses/{{id}}">See more</a>
+    </div>
   </div>
-  <br> <p class="course-resume">{{resume}}</p>
-  <div class="row align-items-center">
-    <a class="see-more-btn" href="courses/{{id}}">See more</a>
-  </div>
-</div>
 {{/each}}
-</div>

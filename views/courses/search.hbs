@@ -1,0 +1,20 @@
+<h1>SEARCH</h1>
+{{#if result}}
+  {{#each result}}
+    <div class="square-content-courses">
+      <div class="title-course text-center">{{name}}</div>
+      <br>
+      <div class="text-center">
+        <img src="{{image}}" alt="" srcset="">
+      </div>
+      <br>
+      <p class="course-resume">{{resume}}</p>
+      <div class="row align-items-center">
+        <a class="see-more-btn" href="../courses/{{id}}">See more</a>
+      </div>
+    </div>
+  {{/each}}
+{{else}}
+  <p>Sorry, there aren't courses about that.</p>
+  <p>Try <a href="../courses">something else</a> or look at the list of <a href="../courses">available coures</a></p> 
+{{/if}}
