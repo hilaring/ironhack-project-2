@@ -3,6 +3,8 @@ const Course = require('../models/course.js');
 
 mongoose.connect('mongodb://laurang:toystory3@ds213832.mlab.com:13832/ih-project-2');
 
+Course.collection.drop();
+
 const courses = [
   {
     name: 'Google Analytics',
@@ -11,6 +13,7 @@ const courses = [
     temary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aspernatur fugiat saepe reprehenderit non amet esse, modi autem possimus nihil, accusantium ad? Adipisci accusantium corrupti cum qui laboriosam pariatur natus?',
     category: 'Marketing digital',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
+    students: [],
   },
   {
     name: 'Google AdWords',
@@ -19,6 +22,7 @@ const courses = [
     temary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aspernatur fugiat saepe reprehenderit non amet esse, modi autem possimus nihil, accusantium ad? Adipisci accusantium corrupti cum qui laboriosam pariatur natus?',
     category: 'Marketing digital',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
+    students: [],
   },
   {
     name: 'WordPress básico',
@@ -27,6 +31,7 @@ const courses = [
     temary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aspernatur fugiat saepe reprehenderit non amet esse, modi autem possimus nihil, accusantium ad? Adipisci accusantium corrupti cum qui laboriosam pariatur natus?',
     category: 'WordPress',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
+    students: [],
   },
   {
     name: 'SEO para WordPress',
@@ -35,10 +40,12 @@ const courses = [
     temary: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio aspernatur fugiat saepe reprehenderit non amet esse, modi autem possimus nihil, accusantium ad? Adipisci accusantium corrupti cum qui laboriosam pariatur natus?',
     category: ['WordPress', 'SEO'],
     video: 'https://www.youtube.com/embed/3V01bDbIR0',
+    students: [],
   },
 ];
 
 Course.create(courses, (err) => {
   if (err) { throw (err); }
+  console.log(`Created ${courses.length} courses`);
   mongoose.connection.close();
 });
