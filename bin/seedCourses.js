@@ -14,6 +14,7 @@ const courses = [
     category: 'Marketing digital',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
     students: [],
+    reviews: [],
   },
   {
     name: 'Google AdWords',
@@ -23,6 +24,7 @@ const courses = [
     category: 'Marketing digital',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
     students: [],
+    reviews: [],
   },
   {
     name: 'WordPress básico',
@@ -32,6 +34,7 @@ const courses = [
     category: 'WordPress',
     video: 'https://www.youtube.com/embed/P3V01bDbIR0',
     students: [],
+    reviews: [],
   },
   {
     name: 'SEO para WordPress',
@@ -41,6 +44,7 @@ const courses = [
     category: ['WordPress', 'SEO'],
     video: 'https://www.youtube.com/embed/3V01bDbIR0',
     students: [],
+    reviews: [],
   },
 ];
 

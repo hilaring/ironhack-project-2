@@ -37,9 +37,9 @@ router.post('/search', (req, res, next) => {
 // COURSE DETAIL
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Course.findById(id)
+  Course.findById(id).populate('reviews.author')
     .then((course) => {
-      res.render('courses/detail', course);
+      res.render('courses/detail', course)
     })
     .catch((error) => {
       next(error);
@@ -69,27 +69,32 @@ router.post('/:id/add', (req, res, next) => { //eslint-disable-line
         res.status(500).json({ error });
       });
 
-    Course.findByIdAndUpdate(courseId, { $push: { students: userID }}, { 'new': true })
+    Course.findByIdAndUpdate(courseId, { $push: { students: userID } }, { new: true })
       .exec((result) => {
         res.status(200).json(result);
-      })
-    // Course.findById(courseId)
-    //   .then((course) => {
-    //     console.log(course.students)
-    //     course.push({ students: userID });
-    //     console.log(course.students)
-    //     course.save()
-    //       .then(() => {
-    //         res.status(200).json({ userID });
-    //       })
-    //       .catch((error) => {
-    //         next(error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     res.status(500).json({ error });
-    //   });
+      });
   }
+});
+
+router.post('/:id/review', (req, res, next) => {
+  const courseId = req.params.id;
+  const userId = req.session.currentUser._id;
+  const { userComment } = req.body;
+  // Course.findByIdAndUpdate(courseId, { $push: { reviews: { comment: comment } } }, { new: true })
+  Course.findById(courseId)
+    .then((course) => {
+      course.reviews.push({ comment: userComment, author: userId });
+      course.save()
+        .then(() => {
+          res.redirect(`/courses/${courseId}`);
+        })
+        .catch((error) => {
+          next(error);
+        });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;
