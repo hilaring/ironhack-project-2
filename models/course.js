@@ -13,7 +13,7 @@ const courseSchema = new Schema({
   reviews: [
     {
       author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      // rate: Number,
+      rate: Number,
       comment: String,
      }], // eslint-disable-line
   // lessons: [

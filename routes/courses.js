@@ -38,8 +38,9 @@ router.post('/search', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Course.findById(id).populate('reviews.author')
+    // .populate('students')
     .then((course) => {
-      res.render('courses/detail', course)
+      res.render('courses/detail', course);
     })
     .catch((error) => {
       next(error);
@@ -70,31 +71,46 @@ router.post('/:id/add', (req, res, next) => { //eslint-disable-line
       });
 
     Course.findByIdAndUpdate(courseId, { $push: { students: userID } }, { new: true })
-      .exec((result) => {
+      .exec((err, result) => {
         res.status(200).json(result);
       });
+    // Course.findById(courseId)
+    //   .then((course) => {
+    //     course.push({ students: userID });
+    //     course.save()
+    //       .then(() => {
+    //         res.status(200).json({ userID });
+    //       })
+    //       .catch((error) => {
+    //         res.status(500).json({ error });
+    //       });
+    //   })
   }
 });
 
 router.post('/:id/review', (req, res, next) => {
   const courseId = req.params.id;
-  const userId = req.session.currentUser._id;
-  const { userComment } = req.body;
-  // Course.findByIdAndUpdate(courseId, { $push: { reviews: { comment: comment } } }, { new: true })
-  Course.findById(courseId)
-    .then((course) => {
-      course.reviews.push({ comment: userComment, author: userId });
-      course.save()
-        .then(() => {
-          res.redirect(`/courses/${courseId}`);
-        })
-        .catch((error) => {
-          next(error);
-        });
-    })
-    .catch((error) => {
-      next(error);
-    });
+  const userId = req.session.currentUser._id; //eslint-disable-line
+  const { userComment, userRate } = req.body;
+
+  if (userComment || userRate) {
+    Course.findById(courseId)
+      .then((course) => {
+        course.reviews.push({ comment: userComment, author: userId, rate: userRate });
+        course.save()
+          .then(() => {
+            res.redirect(`/courses/${courseId}`);
+          })
+          .catch((error) => {
+            next(error);
+          });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    res.redirect(`/courses/${courseId}`);
+  }
 });
 
 module.exports = router;
