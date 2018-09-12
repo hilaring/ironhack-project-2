@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema; // eslint-disable-line
 
 const courseSchema = new Schema({
-  name: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  teacher: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   image: String,
+  category: [{ type: String, required: true }], // Ej.: 'Desarrollo web', 'SEO'...
   resume: { type: String, required: true },
   temary: { type: String, required: true },
-  category: [{ type: String, required: true }], // Ej.: 'Desarrollo web', 'SEO'...
   video: String,
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   reviews: [
