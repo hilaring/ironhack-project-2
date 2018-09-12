@@ -61,20 +61,49 @@ router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
     .exec((err, result) => {
       res.status(200).json(result);
     });
+});
 
-  /* ---- Otra forma de hacerlo ---- */
-  /* Esta forma es con el método pull de mongoose, la anterior es con el $pull de mongo */
-  // User.findById(userID)
-  //   .then((user) => {
-  //     user.stats.pull({ courses: courseId, checked: false }, { new: true });
-  //     user.save()
-  //       .then(() => {
-  //         res.status(200).json({ courseId });
-  //       });
-  //   })
-  //   .catch((error) => {
-  //     res.status(500).json({ error });
-  //   });
+// TEACHER'S SPACE
+router.get('/:id/teacher', (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((user) => {
+      res.render('profile/teacher', user);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/:id/createcourse', (req, res, next) => {
+  const userId = req.session.currentUser._id;
+  const { videoInput } = req.body;
+  const videoEmbed = videoInput.replace('watch?v=', 'embed/');
+
+  if (!req.body.name || !req.body.category || !req.body.resume || !req.body.temary) {
+    // mensaje de error, necesita rellenar campos
+    res.redirect(`/profile/${userId}/teacher`);
+  } else {
+    const newCourse = {
+      name: req.body.name,
+      teacher: userId,
+      image: req.body.image,
+      category: req.body.category,
+      resume: req.body.resume,
+      temary: req.body.temary,
+      video: videoEmbed,
+      students: [],
+      reviews: [],
+    };
+
+    Course.create(newCourse, (err, docs) => {
+      if (err) { 
+        next(err);
+      } else {
+        res.redirect(`/profile/${userId}/teacher`);
+      }
+    });
+  }
 });
 
 module.exports = router;
