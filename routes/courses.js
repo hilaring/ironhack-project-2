@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   Course.find({})
-    .sort({ name: 1 })
-    .populate('students')
+    // .sort({ name: 1 })
+    .populate('students') // no popula :(
     .then((coursesArray) => {
       res.render('courses/list', { coursesArray, header: 'Courses' });
     })
@@ -18,6 +18,20 @@ router.get('/', (req, res, next) => {
 
 // FIND COURSES
 router.post('/search', (req, res, next) => {
+  // const searchInput = req.body.query;
+  // Course.find({
+  //   $text: {
+  //     $search: searchInput,
+  //     $caseSensitive: false,
+  //     $diacriticSensitive: false,
+  //   },
+  // }).sort({ name: 1 })
+  //   .then((coursesArray) => {
+  //     res.render('courses/list', { coursesArray, header: 'Courses Search' });
+  //   })
+  //   .catch((error) => {
+  //     next(error);
+  //   });
   const searchInput = req.body.query;
   Course.find({
     $text: {
@@ -25,12 +39,35 @@ router.post('/search', (req, res, next) => {
       $caseSensitive: false,
       $diacriticSensitive: false,
     },
-  }).sort({ name: 1 })
-    .then((result) => {
-      res.render('courses/search', { result });
-    })
-    .catch((error) => {
-      next(error);
+  }, (err, result) => {
+    if (result.length) {
+      Course.find({
+        $text: {
+          $search: searchInput,
+          $caseSensitive: false,
+          $diacriticSensitive: false,
+        },
+      }).sort({ name: 1 })
+        .then((coursesArray) => {
+          res.render('courses/list', { coursesArray, header: 'Courses Search' });
+        })
+        .catch((error) => {
+          next(error);
+        });
+    } else {
+      Course.find({})
+        // .sort({ name: 1 })
+        .then((coursesArray) => {
+          // mensaje de que no hay resultados
+          res.render('courses/list', { coursesArray, header: 'Courses' });
+        })
+        .catch((error) => {
+          next(error);
+        });
+    }
+  });
+});
+
     });
 });
 
@@ -59,7 +96,7 @@ router.post('/:id/add', (req, res, next) => { //eslint-disable-line
         user.stats.push({ courses: courseId, checked: false });
         user.save()
           .then(() => {
-            // req.flash('info', 'Add course successfully');
+            // mensaje de ok
             res.status(200).json({ courseId });
           })
           .catch((error) => {
