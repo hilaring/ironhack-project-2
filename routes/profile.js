@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user'); // eslint-disable-line
 const Course = require('../models/course.js'); // eslint-disable-line
 const isUserLogged = require('../middlewares/isUserLogged');
+const isUserTeacher = require('../middlewares/isUserTeacher');
 
 const router = express.Router();
 
@@ -64,7 +65,7 @@ router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
 });
 
 // TEACHER'S SPACE
-router.get('/:id/teacher', (req, res, next) => {
+router.get('/:id/teacher', isUserTeacher, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {
@@ -75,7 +76,7 @@ router.get('/:id/teacher', (req, res, next) => {
     });
 });
 
-router.post('/:id/createcourse', (req, res, next) => {
+router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
   const userId = req.session.currentUser._id;
   const { videoInput } = req.body;
   const videoEmbed = videoInput.replace('watch?v=', 'embed/');

@@ -18,7 +18,7 @@
     <form action="/courses/{{id}}/review" method="post">
         <div class="col">
             <label for="rate">Rate the course:</label>
-            <select id="rate" name="userRate">
+            <select class="selectpicker show-tick" id="rate" name="userRate">
                 <option></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -29,7 +29,7 @@
         </div>
         <div class="col">    
             <label for="comment">Comment:</label>
-            <input class="form-control" type="text" name="userComment" value="{{comment}}" placeholder="supercalifragilisticoespialidoso" maxlength="200">
+            <input class="form-control text-transition" type="text" name="userComment" placeholder="supercalifragilisticoespialidoso" maxlength="200">
             <button type="submit">
                 <i class="fa fa-send"></i>
             </button>

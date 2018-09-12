@@ -19,6 +19,14 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
   const { username, name, lastname, birth, email, password, phone } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
+  
+  const teacherResponse = req.body;
+  let teacherTrueFalse = false;
+  if (teacherResponse === 'no') {
+    teacherTrueFalse = false;
+  } else {
+    teacherTrueFalse = true;
+  }
 
   if (!username || !password || !email) {
     req.flash('info', 'The fields can\'t be empty!');
@@ -31,13 +39,16 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
           res.redirect('/auth/signup');
         } else {
           User.create({
+            username,
+            teacher: teacherTrueFalse,
             name,
             lastname,
             birth,
             phone,
-            username,
             email,
             password: hashedPassword,
+            coursesCreated: [],
+            stats: [],
           })
             .then((newUser) => {
               if (newUser) {
