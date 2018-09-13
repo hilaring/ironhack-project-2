@@ -4,7 +4,11 @@
   <div class="content-profile">
     <br>
     <h5>Courses created</h5>
-    {{!-- <p>You don't create any course yet :(</p> --}}
+    {{#if coursesCreated.length}}
+      {{courseCreated}}
+    {{else}}
+      <p>You don't create any course yet :(</p>
+    {{/if}}
   </div>
 </div>
 <br>

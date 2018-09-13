@@ -40,6 +40,31 @@ $(document).ready(() => {
         });
     });
 
+    $('.sort-btn:button').on('click', () => {
+        // alert($(this).val());
+        console.log($(event.target).attr('value'))
+
+        const data = {
+            btnType: $(event.target).attr('value')
+        }
+
+        $.ajax({
+            url: `http://localhost:3333/courses/sort`,
+            method: 'POST',
+            dataType: 'json',
+            data: data,
+            success: (req, res, next) => {
+                console.log(data)
+                console.log('Request:', req);
+                console.log('Response:', res);
+                location.reload();
+            },
+            error: (error) => {
+                console.log('error:', error);
+            },
+        })
+    });
+
     $('.remove-course').on('click', () => {
         console.log('remove course btn pressed')
         const courseId = $(event.target).attr('value');
@@ -57,18 +82,17 @@ $(document).ready(() => {
         })
 
         $(document).ajaxSuccess(() => {
-            // $('.hide').click(() => {
-            $('.hide').slideUp();
-            // })
+            location.reload();
+        //     $('.hide').on('click', () => {
+        //         $(this).slideUp();
+        //     })
         });
     });
 
-    $(window).ajaxStart(() => { console.log('Ajax Start'); }); // triggered if an Ajax request is started and no other Ajax requests are currently running
-    $(window).ajaxSend((send) => { console.log('Ajax Send:', send); }); // triggered before the request is run
-    $(window).ajaxSuccess((success) => { console.log('Ajax Success', success); }); // only called if the request was successful
-    $(window).ajaxError((error) => { console.log('Ajax Error:', error); }); // only called if an error occurred with the request
-    $(window).ajaxComplete(() => { console.log('Ajax Complete'); }); // called regardless of if the request was successful, or not.
-    $(window).ajaxStop(() => { console.log('Ajax Stop'); }); // triggered if there are no more Ajax requests being processed.
+    $(window).ajaxStart(() => { console.log('Ajax Start'); }); // hay una req de ajax y ninguna otra corriendo
+    $(window).ajaxSend((send) => { console.log('Ajax Send:', send); }); // antes de que corra la req
+    $(window).ajaxSuccess((success) => { console.log('Ajax Success', success); }); // solo si la req es success
+    $(window).ajaxError((error) => { console.log('Ajax Error:', error); }); // solo si hay un error en la req
+    $(window).ajaxComplete(() => { console.log('Ajax Complete'); }); // tanto si la req es sucess o no
+    $(window).ajaxStop(() => { console.log('Ajax Stop'); }); // no se están procesando más ajax
 });
-
-/* eslint-enable */

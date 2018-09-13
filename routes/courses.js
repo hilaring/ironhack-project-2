@@ -7,7 +7,6 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   Course.find({})
     // .sort({ name: 1 })
-    .populate('students') // no popula :(
     .then((coursesArray) => {
       res.render('courses/list', { coursesArray, header: 'Courses' });
     })
@@ -68,14 +67,51 @@ router.post('/search', (req, res, next) => {
   });
 });
 
+// SORT COURSES
+router.post('/sort', (req, res, next) => {
+  // const objBtn = JSON.parse(req.body);
+  const strBtn = JSON.stringify(req.body);
+  const btn = strBtn.replace('{"btnType":"', '').replace('"}', '');
+
+  let sortCase = {};
+
+  switch (btn) {
+    case 'mostStudents':
+      sortCase = { name: -1 };
+      break;
+    case 'alphabeticalAscending':
+      sortCase = { name: 1 };
+      break;
+    case 'alphabeticalDescending':
+      sortCase = { name: -1 };
+      break;
+    case 'creationAscending':
+      sortCase = { createdAt: 1 };
+      break;
+    case 'creationDescending':
+      sortCase = { createdAt: -1 };
+      break;
+    default:
+      sortCase = { name: 1 };
+  }
+
+  Course.find({})
+    .sort(sortCase)
+    .exec((err, result) => {
+      res.status(200).json(result);
     });
+  // .then((coursesArray) => {
+  //   res.redirect('courses/list', coursesArray);
+  // })
+  // .catch((error) => {
+  //   next(error);
+  // });
 });
 
 // COURSE DETAIL
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Course.findById(id).populate('reviews.author')
-    // .populate('students')
+  Course.findById(id).populate('reviews.author').populate('teacher').populate('students')
     .then((course) => {
       res.render('courses/detail', course);
     })

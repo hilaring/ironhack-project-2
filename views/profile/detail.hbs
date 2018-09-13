@@ -10,6 +10,7 @@
         <p><span class="user-information">Birthday: </span><span>{{birth}}</span></p>
         <p><span class="user-information">Email: </span><span>{{email}}</span></p>
         <p><span class="user-information">Phone: </span><span>{{phone}}</span></p>
+        <p><span class="user-information">Teacher: </span><span>{{teacher}}</span></p>
         <p><a class="input-btn" href="/profile/{{_id}}/edit">Edit</a></p>
         <form action="/profile/{{_id}}/delete" method="post">
             <input class="input-btn" type="submit" value="Delete Account">
@@ -33,7 +34,8 @@
                 <li class="list-group-item hide">
                     <p>{{courses.name}}</p>
                     <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
-                    <input id="checkbox" type="checkbox" name="check" value="false"><label for="checkbox">Complete</label>
+                    <label for="checkbox">Complete</label>
+                    <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false">
                     <button type="submit" value="{{this._id}}" class="input-btn remove-course">
                         <i class="fa fa-trash-o"></i>
                     </button>

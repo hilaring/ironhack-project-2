@@ -19,7 +19,7 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
   const { username, name, lastname, birth, email, password, phone } = req.body;
   const salt = bcrypt.genSaltSync(saltRounds);
   const hashedPassword = bcrypt.hashSync(password, salt);
-  
+
   const teacherResponse = req.body;
   let teacherTrueFalse = false;
   if (teacherResponse === 'no') {

@@ -8,6 +8,29 @@
   </form>
 </div>
 
+<br>
+<div class="row">
+  {{!-- número alumnos --}}
+  <button id="mostStudents" type="submit" value="mostStudents" class="button-css sort-btn">
+    <i class="fa fa-star"></i>
+  </button>
+  {{!-- orden alfabetico --}}
+  <button id="alphabeticalAscending" type="submit" value="alphabeticalAscending" class="button-css sort-btn">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+  <button id="alphabeticalDescending" type="submit" value="alphabeticalDescending" class="button-css sort-btn">
+    <i class="fa fa-chevron-down"></i>
+  </button>
+  {{!-- fecha --}}
+  <button id="creationAscending" type="submit" value="creationAscending" class="button-css sort-btn">
+    <i class="fa fa-calendar-plus-o"></i>
+  </button>
+  <button id="creationDescending" type="submit" value="creationDescending" class="button-css sort-btn">
+    <i class="fa fa-calendar-minus-o"></i>
+  </button>
+</div>
+
+
 {{#each coursesArray}}
   <div class="square-content-courses">
     <div class="title-course text-center">{{name}}</div>
