@@ -1,11 +1,96 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
 
 body {
-  font: 14px 'Montserrat', sans-serif;
-  background-image: url("/images/background.jpg");
+  font: 14px "Montserrat", sans-serif;
+  background-color: #4f89f7;
+  /* background-image: url("/images/background.jpg"); */
+  background-attachment: fixed;
 }
 
+a {
+  color: #00b7ff;
+  /* font-weight: 800; */
+}
+
+h1 {
+  color: #282a35;
+  font-size: 22px;
+}
+
+.button-css {
+  margin: auto;
+  background-color: #4f89f7;
+  border-radius: 20px;
+  color: white;
+  padding: 7px 40px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.button-css-info {
+  margin: auto;
+  background-color: #4f89f7;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 10px;
+  margin-top: 0px;
+  font-size: 14px;
+}
+
+.see-more-btn {
+  margin: auto;
+  background-color: #4f89f7;
+  border-radius: 20px;
+  color: white;
+  padding: 7px 40px;
+  margin-top: 0px;
+  font-weight: 500;
+}
+
+li {
+  display: inline;
+}
+
+.nav-item {
+  font-size: 16px;
+  margin-left: 30px;
+  color: white;
+}
+
+.nav-item:active {
+  font-size: 25px;
+}
+
+.navbar-style {
+  background-color: #282a35;
+}
+
+.navbar-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  color: white;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
+
+.copyright {
+  background-color: #282a35;
+  color: white;
+  padding-top: 10px;
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
 @media (max-width: 736px) {
+  a {
+    color: white;
+    font-weight: 600;
+  }
+
   .form {
     margin: auto;
     max-width: 300px;
@@ -19,9 +104,8 @@ body {
     margin: auto;
     padding-top: 20px;
     padding-bottom: 10px;
-    font-size: 25px;
   }
-  
+
   .title-courses-page {
     margin: auto;
     padding-bottom: 10px;
@@ -30,7 +114,171 @@ body {
 
   .title-course {
     align-content: center;
-    color: #a41e34;
+    color: #282a35;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .title-field {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .course-description {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .form {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    max-width: 300px;
+  }
+
+  .square-content {
+    margin-top: 60px;
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .square-content-signup {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .square-content-courses {
+    margin-top: 35px;
+    padding-bottom: 35px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 3px 4px #282a35;
+  }
+
+  .square-content-profile {
+    margin-top: 35px;
+    padding-bottom: 35px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 3px 4px #282a35;
+  }
+
+  .course-resume {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .info-profile { 
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .edit-profile {
+    font-size: 12px;
+  }
+
+  .fields-profile {
+    border: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4f89f7;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .fields-profile:focus {
+    -webkit-appearance: none;
+  }
+
+  .field-detail {
+    padding-top: 20px;
+  }
+
+  .edit-form {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .course-video {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .user-information {
+    font-weight: 600;
+  }
+
+  .content-profile {
+    padding: 50px 50px;
+  }
+
+  .icon-navbar {
+    color: white;
+  }
+
+  .edit-profile-block {
+    float: right;
+  }
+
+  .edit-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid red;
+  }
+
+  .input-btn {
+    color: #4f89f7;
+    font-weight: 500;
+  }
+
+  .square-course {
+    margin-top: 60px;
+    background-color: white;
+    border-radius: 5px;
+  }
+  
+  .footer-menu {
+    padding-right: 40px;
+  }
+}
+
+@media (min-width: 737px) and (max-width: 992px) {
+  .form {
+    margin: auto;
+    max-width: 300px;
+    height: 600px;
+  }
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .header-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: white;
+  }
+
+  .title-page {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 28px;
+  }
+
+  .title-courses-page {
+    margin: auto;
+    padding-bottom: 10px;
+    font-size: 25px;
+  }
+
+  .title-course {
+    align-content: center;
+    color: #f59b99;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 22px;
@@ -48,7 +296,7 @@ body {
     padding-bottom: 10px;
     max-width: 300px;
   }
-  
+
   .square-content {
     margin-top: 60px;
     background-color: white;
@@ -71,117 +319,18 @@ body {
 
   .square-content-profile {
     margin-top: 35px;
-    background-color: white;
-    border-radius: 5px;
-  }
-
-  .course-resume {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .user-information {
-    font-weight: 600;
-  }
-  
-  .content-profile {
-    padding: 50px 50px;
-  }
-
-  .icon-navbar {
-    color: white;
-  }
-
-  .input-btn {  
-    color: #a41e34;
-  }
-
-  .square-course {
-    margin-top: 60px;
-    background-color: white;
-    border-radius: 5px;
-  }
-}
-
-@media (min-width: 737px) and (max-width: 992px) {
-  .form {
-    margin: auto;
-    max-width: 300px;
-    height: 600px;
-  }
-  .content {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .header-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: white;
-  }
-
-  .title-page {
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    font-size: 28px;
-  }
-  
-  .title-courses-page {
-    margin: auto;
-    padding-bottom: 10px;
-    font-size: 25px;
-  }
-
-  .title-course {
-    align-content: center;
-    color: #a41e34;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    font-size: 22px;
-    font-weight: 500;
-  }
-
-  .course-description {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .form {
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    max-width: 300px;
-  }
-  
-  .square-content {
-    margin-top: 60px;
-    background-color: white;
-    border-radius: 5px;
-  }
-
-  .square-content-signup {
-    margin-top: 35px;
-    background-color: white;
-    border-radius: 5px;
-  }
-
-  .square-content-courses {
-    margin-top: 35px;
     padding-bottom: 35px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 3px 4px grey;
   }
-  
+
   .icon-navbar {
     color: white;
   }
 
-  .input-btn {  
-    color: #a41e34;
+  .input-btn {
+    color: #4f89f7;
   }
 
   .square-course {
@@ -189,72 +338,4 @@ body {
     background-color: white;
     border-radius: 5px;
   }
-}
-
-
-
-a {
-  color: #00B7FF;
-  font-weight: 800;
-}
-
-h1 {
-  color: #a41e34;
-}
-
-.button-css{
-  margin: auto;
-  background-color: #a41e34;
-  border-radius: 4px;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 0px;
-  font-weight: 500;
-}
-
-.button-css-info{
-  margin: auto;
-  background-color: #a41e34;
-  border-radius: 4px;
-  color: white;
-  padding: 5px 10px;
-  margin-top: 0px;
-  font-size: 14px;
-}
-
-.see-more-btn {
-  margin: auto;
-  background-color: #a41e34;
-  border-radius: 4px;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 0px;
-  font-weight: 500;
-}
-
-li {
-  display: inline;
-}
-
-.nav-item {
-  color: white;
-}
-
-.navbar-style {
-  background-color: #a41e34; 
-}
-
-.navbar-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  letter-spacing: 1px;
-  color: white;
-}
-
-.copyright {
-  background-color: #a41e34;
-  color: white;
-  padding-top: 5px;
-  margin-top: 500px;
 }
