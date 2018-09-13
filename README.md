@@ -26,20 +26,20 @@ Description about project!!!!!!!
 
 Verb | Routes | View | Destination | Private  
 :--:|:--:|:--:|:--:|:--:|
-GET | / |home|-|No
-GET | /auth/signup | auth/sign up |-| No
-POST | /auth/signup | auth/sign up | /cursos | No
-GET | /auth/login | auth/login |-| No
-POST | /auth/login | auth/login | /cursos | No
-POST | /auth/logout | - | / | Si
-GET | /courses | courses/list | - | Si
-GET | /courses/:id | courses/view | - |Si
-POST | /courses/:id/add | - | courses/:id | Sí
-POST | /courses/:id/remove | - | courses/:id | Si
-POST | /courses/:id/complete | - | courses/:id | Si
-GET | /profile | user/profile | - | Sí
-POST | /profile | - | /profile | Sí 
-POST | /profile/:id/remove | - | /profile | Sí (ver verbo delete)
+GET | / |home|-|No ✘
+GET | /auth/signup | auth/sign up |-| No ✘
+POST | /auth/signup | auth/sign up | /cursos | No ✘
+GET | /auth/login | auth/login |-| No ✘
+POST | /auth/login | auth/login | /cursos | No ✘
+POST | /auth/logout | - | / | Si ✔
+GET | /courses | courses/list | - | Si ✔
+GET | /courses/:id | courses/view | - |Si ✔
+POST | /courses/:id/add | - | courses/:id | Sí ✔
+POST | /courses/:id/remove | - | courses/:id | Si ✔
+POST | /courses/:id/complete | - | courses/:id | Si ✔
+GET | /profile | user/profile | - | Sí ✔
+POST | /profile | - | /profile | Sí ✔
+POST | /profile/:id/remove | - | /profile | Sí ✔ (ver verbo delete)
 
 
 ## Models

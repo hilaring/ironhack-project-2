@@ -3,8 +3,54 @@
     <div class="title-course text-center">{{name}}</div>
     <br>
     <div>
+    <p class="course-resume">Teacher: {{teacher.username}}</p>
     <p class="course-resume">{{temary}}</p>
     </div>
-    <div class="course-video"><iframe class="course-resume" src="{{video}}"></iframe></div>
-    <button id="add" type="submit" value="{{_id}}" class="button-css row align-items-center">Add</button>
+    <div  class="course-video"><iframe class="course-resume" src="{{video}}"></iframe></div>
+    <div>
+        <p id="container-number-students" class="text-center">Number of students: <i id="number-students">{{students.length}}</i></p>
+    </div>
+    <button id="add" type="submit" value="{{_id}}" class="button-css row align-items-center">
+        <i id="add-icon" class="fa fa-plus"></i>
+    </button>
 </div>
+
+    <div class="title-course">Reviews of the course</div>
+    <form action="/courses/{{id}}/review" method="post">
+        <div class="col">
+            <label for="rate">Rate the course:</label>
+            <select class="selectpicker show-tick" id="rate" name="userRate">
+                <option></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="col">    
+            <label for="comment">Comment:</label>
+            <input class="form-control text-transition" type="text" name="userComment" placeholder="supercalifragilisticoespialidoso" maxlength="200">
+            <button type="submit">
+                <i class="fa fa-send"></i>
+            </button>
+        </div>
+    </form>
+
+    {{#if reviews.length}}
+        {{#each reviews}}
+            <div class="square-content-courses">
+                <h6 class="card-header">{{author.username}}</h6>
+                 {{#if rate}}
+                    <p class="course-resume"> My rate is: {{rate}}</p>
+                 {{/if}}
+                <p class="course-resume">{{comment}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="square-content-courses">
+            <p class="course-resume">Any review yet</p>
+        </div>
+    {{/if}}
+
+
