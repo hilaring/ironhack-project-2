@@ -129,16 +129,6 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
   const courseId = req.params.id;
   const userId = req.session.currentUser._id; //eslint-disable-line
 
-  User.find({ username: { $eq: 'admin' }}, { name: { $eq: 'admin'}})
-    .exec((err, docs) => {
-      console.log(docs)
-    })
-
-  // User.findById(userId)
-  //   .exec((err, docs) => {
-  //     console.log(docs.stats);
-  //   });
-
   User.findById(userId)
     .then((user) => {
       user.stats.push({ courses: courseId, checked: false });
