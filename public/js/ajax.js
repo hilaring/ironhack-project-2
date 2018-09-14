@@ -67,7 +67,8 @@ $(document).ready(() => {
 
     $('.remove-course').on('click', () => {
         console.log('remove course btn pressed')
-        const courseId = $(event.target).attr('value');
+        const courseId = $('.remove-course').attr('value');
+        console.log(courseId)
 
         $.ajax({
             url: `http://localhost:3333/profile/${courseId}/remove`,

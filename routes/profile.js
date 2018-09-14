@@ -73,9 +73,10 @@ router.post('/:id/delete', (req, res, next) => {
 router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
   const userID = req.session.currentUser._id; //eslint-disable-line
   const courseId = req.params.id;
-  User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true }) // NO HACE PULL
+  User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
+    // hacer pull de lista de estudiantes de cursos
     .exec((err, result) => {
-      res.status(200).json(result);
+      res.status(200).json(result)
     });
 });
 

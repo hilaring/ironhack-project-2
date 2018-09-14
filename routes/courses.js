@@ -1,6 +1,7 @@
 const express = require('express');
 const Course = require('../models/course.js');
 const User = require('../models/user.js');
+const isUserLogged = require('../middlewares/isUserLogged');
 
 const router = express.Router();
 
@@ -109,7 +110,7 @@ router.post('/sort', (req, res, next) => {
 });
 
 // COURSE DETAIL
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isUserLogged, (req, res, next) => {
   const { id } = req.params;
   Course.findById(id).populate('reviews.author').populate('teacher').populate('students')
     .then((course) => {
@@ -121,47 +122,45 @@ router.get('/:id', (req, res, next) => {
 });
 
 // ADD A COURSE
-router.post('/:id/add', (req, res, next) => { //eslint-disable-line
+router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-line
   const courseId = req.params.id;
   const userID = req.session.currentUser._id; //eslint-disable-line
-  const message = { messages: req.flash('info') }; //eslint-disable-line
 
-  if (userID) {
-    User.findById(userID)
-      .then((user) => {
-        user.stats.push({ courses: courseId, checked: false });
-        user.save()
-          .then(() => {
-            // mensaje de ok
-            res.status(200).json({ courseId });
-          })
-          .catch((error) => {
-            next(error);
-          });
-      })
-      .catch((error) => {
-        res.status(500).json({ error });
-      });
+  User.findById(userID)
+    .then((user) => {
+      user.stats.push({ courses: courseId, checked: false });
+      user.save()
+        .then(() => {
+          // mensaje de ok
+          res.status(200).json({ courseId });
+        })
+        .catch((error) => {
+          next(error);
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({ error });
+    });
 
-    Course.findByIdAndUpdate(courseId, { $push: { students: userID } }, { new: true })
-      .exec((err, result) => {
-        res.status(200).json(result);
-      });
-    // Course.findById(courseId)
-    //   .then((course) => {
-    //     course.push({ students: userID });
-    //     course.save()
-    //       .then(() => {
-    //         res.status(200).json({ userID });
-    //       })
-    //       .catch((error) => {
-    //         res.status(500).json({ error });
-    //       });
-    //   })
-  }
+  Course.findByIdAndUpdate(courseId, { $push: { students: userID } }, { new: true })
+    .exec((err, result) => {
+      res.status(200).json(result);
+    });
+  // Course.findById(courseId)
+  //   .then((course) => {
+  //     course.push({ students: userID });
+  //     course.save()
+  //       .then(() => {
+  //         res.status(200).json({ userID });
+  //       })
+  //       .catch((error) => {
+  //         res.status(500).json({ error });
+  //       });
+  //   })
 });
 
-router.post('/:id/review', (req, res, next) => {
+//  REVIEWS OF USERS
+router.post('/:id/review', isUserLogged, (req, res, next) => {
   const courseId = req.params.id;
   const userId = req.session.currentUser._id; //eslint-disable-line
   const { userComment, userRate } = req.body;

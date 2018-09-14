@@ -339,3 +339,9 @@ li {
     border-radius: 5px;
   }
 }
+
+.text-transition:focus::placeholder {
+transform: translateX(80px);
+opacity: 0;
+transition: all .5s ease;
+}
