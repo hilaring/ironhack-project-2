@@ -5,7 +5,15 @@
     <br>
     <h5>Courses created</h5>
     {{#if coursesCreated.length}}
-      {{courseCreated}}
+      <ul>
+      {{#each coursesCreated}}
+        <li>
+          <p>{{this.name}}</p>
+          <a class="input-btn" href="/courses/{{this.id}}">Go to your course</a>
+          <p>Number of students: {{this.students.length}}</p>
+        </li>
+      {{/each}}
+      </ul>
     {{else}}
       <p>You don't create any course yet :(</p>
     {{/if}}

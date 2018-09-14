@@ -82,11 +82,11 @@ router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
 
 // TEACHER'S SPACE
 router.get('/:id/teacher', isUserTeacher, (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
+  const userId = req.session.currentUser._id;
+  User.findById(userId)
     .populate('coursesCreated')
-    .then((user) => {
-      res.render('profile/teacher', user);
+    .then((resultUser) => {
+      res.render('profile/teacher', resultUser);
     })
     .catch((error) => {
       next(error);
