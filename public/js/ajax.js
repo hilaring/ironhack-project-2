@@ -84,9 +84,8 @@ $(document).ready(() => {
 
         $(document).ajaxSuccess(() => {
             location.reload();
-            // $('.hide').on('click', () => {
-            //     $(this).slideUp();
-            // })
+            // $(event.target).slideUp()
+            // $('hide').slideUp()
         });
     });
 

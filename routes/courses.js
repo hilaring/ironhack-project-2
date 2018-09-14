@@ -78,7 +78,7 @@ router.post('/sort', (req, res, next) => {
 
   switch (btn) {
     case 'mostStudents':
-      sortCase = { name: -1 };
+      sortCase = { name: 1 };
       break;
     case 'alphabeticalAscending':
       sortCase = { name: 1 };
@@ -100,6 +100,9 @@ router.post('/sort', (req, res, next) => {
     .sort(sortCase)
     .exec((err, result) => {
       res.status(200).json(result);
+      // if (result) {
+      //   res.redirect('/courses/list');
+      // }
     });
   // .then((coursesArray) => {
   //   res.redirect('courses/list', coursesArray);
@@ -124,9 +127,19 @@ router.get('/:id', isUserLogged, (req, res, next) => {
 // ADD A COURSE
 router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-line
   const courseId = req.params.id;
-  const userID = req.session.currentUser._id; //eslint-disable-line
+  const userId = req.session.currentUser._id; //eslint-disable-line
 
-  User.findById(userID)
+  User.find({ username: { $eq: 'admin' }}, { name: { $eq: 'admin'}})
+    .exec((err, docs) => {
+      console.log(docs)
+    })
+
+  // User.findById(userId)
+  //   .exec((err, docs) => {
+  //     console.log(docs.stats);
+  //   });
+
+  User.findById(userId)
     .then((user) => {
       user.stats.push({ courses: courseId, checked: false });
       user.save()
@@ -142,21 +155,10 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
       res.status(500).json({ error });
     });
 
-  Course.findByIdAndUpdate(courseId, { $push: { students: userID } }, { new: true })
+  Course.findByIdAndUpdate(courseId, { $push: { students: userId } }, { new: true })
     .exec((err, result) => {
       res.status(200).json(result);
     });
-  // Course.findById(courseId)
-  //   .then((course) => {
-  //     course.push({ students: userID });
-  //     course.save()
-  //       .then(() => {
-  //         res.status(200).json({ userID });
-  //       })
-  //       .catch((error) => {
-  //         res.status(500).json({ error });
-  //       });
-  //   })
 });
 
 //  REVIEWS OF USERS
