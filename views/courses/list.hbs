@@ -1,52 +1,68 @@
 <!-- layout.hbs -->
-<div class="align-items-center search-container">
-  <form class="search-form" action="/courses/search" method="POST">
-    <input class="form-control text-transition" type="search" placeholder="Search..." name="query" id="search-courses">
-    <button class="btn" type="submit">
-      <i class="fa fa-search"></i>
+<div class="filter-box">
+  <div class="filter-form">
+    <form action="/courses/search" method="POST">
+      <input class="text-transition input-filter" type="search" placeholder="Search..." name="query" id="search-courses">
+      <button type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <br>
+  <div class="sort-row">
+    {{!-- número alumnos --}}
+    <button id="mostStudents" type="submit" value="mostStudents" class="button-sort">
+      <i class="fa fa-star fa-lg icon-sort"></i>
     </button>
-  </form>
+    {{!-- orden alfabetico --}}
+    <button id="alphabeticalAscending" type="submit" value="alphabeticalAscending" class="button-sort">
+      <i class="fa fa-chevron-up fa-lg icon-sort"></i>
+    </button>
+    <button id="alphabeticalDescending" type="submit" value="alphabeticalDescending" class="button-sort">
+      <i class="fa fa-chevron-down fa-lg icon-sort"></i>
+    </button>
+    {{!-- fecha --}}
+    <button id="creationAscending" type="submit" value="creationAscending" class="button-sort">
+      <i class="fa fa-calendar-plus-o fa-lg icon-sort"></i>
+    </button>
+    <button id="creationDescending" type="submit" value="creationDescending" class="button-sort">
+      <i class="fa fa-calendar-minus-o fa-lg icon-sort"></i>
+    </button>
+  </div>
 </div>
-
-<br>
-<div class="row">
-  {{!-- número alumnos --}}
-  <button id="mostStudents" type="submit" value="mostStudents" class="button-css sort-btn">
-    <i class="fa fa-star"></i>
-  </button>
-  {{!-- orden alfabetico --}}
-  <button id="alphabeticalAscending" type="submit" value="alphabeticalAscending" class="button-css sort-btn">
-    <i class="fa fa-chevron-up"></i>
-  </button>
-  <button id="alphabeticalDescending" type="submit" value="alphabeticalDescending" class="button-css sort-btn">
-    <i class="fa fa-chevron-down"></i>
-  </button>
-  {{!-- fecha --}}
-  <button id="creationAscending" type="submit" value="creationAscending" class="button-css sort-btn">
-    <i class="fa fa-calendar-plus-o"></i>
-  </button>
-  <button id="creationDescending" type="submit" value="creationDescending" class="button-css sort-btn">
-    <i class="fa fa-calendar-minus-o"></i>
-  </button>
-</div>
-
 
 {{#each coursesArray}}
-  <div class="square-content-courses">
-    <div class="title-course text-center">{{name}}</div>
-    <br>
-    <div class="text-center">
-      <img src="{{image}}" alt="" srcset="">
-    </div>
-    <br>
+<div class="square-content-courses">
+  <h1 class="title-course text-center">{{name}}</h1>
+  <br>
+  <div class="text-center">
+    <img src="{{image}}" alt="" srcset="">
+  </div>
+  <br>
+  <div>
     <p class="course-resume">{{resume}}</p>
-    <div class="row align-items-center">
-      <a class="see-more-btn" href="/courses/{{id}}">See more</a>
+  </div>
+  <div class="course-resume">
+    <div>
+      <i class="fa fa-users fa-lg icon-sort"></i>
+      <span>Total students: </span>
+      <span id="number-students">{{students.length}}</span>
     </div>
   </div>
-{{/each}}
-
-{{!-- {{#if !courseArray}}
-  <p>Sorry, there aren't courses about that.</p>
-  <p>Try <a href="/courses">something else</a> or look at the list of <a href="/courses">available coures</a></p>
+  <div class="course-resume">
+    <div>
+      <i class="fa fa-user fa-lg icon-sort"></i>
+      <span>Total students: </span>
+    </div>
+  </div>
+  <div class="row align-items-center">
+    <a class="see-more-btn" href="/courses/{{id}}">See now !</a>
+  </div>
+</div>
+{{/each}} {{!-- {{#if !courseArray}}
+<p>Sorry, there aren't courses about that.</p>
+<p>Try
+  <a href="/courses">something else</a> or look at the list of
+  <a href="/courses">available coures</a>
+</p>
 {{/if}} --}}
