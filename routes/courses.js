@@ -69,10 +69,10 @@ router.get('/sort/:type', (req, res) =>{
       sortCase = { name: -1 };
       break;
     case 'creationAscending':
-      sortCase = { createdAt: 1 };
+      sortCase = { created_at: 1 };
       break;
     case 'creationDescending':
-      sortCase = { createdAt: -1 };
+      sortCase = { created_at: -1 };
       break;
     default:
       sortCase = { name: 1 };

@@ -1,44 +1,69 @@
 <!-- layout.hbs -->
-<div class="align-items-center search-container">
-  <form class="search-form" action="/courses/search" method="POST">
-    <input class="form-control text-transition" type="search" placeholder="Search..." name="query" id="search-courses">
-    <button class="btn" type="submit">
-      <i class="fa fa-search"></i>
+<div class="filter-box">
+  <div class="filter-form">
+    <form action="/courses/search" method="POST">
+      <input class="text-transition input-filter" type="search" placeholder="Search..." name="query" id="search-courses">
+      <button type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <br>
+  <div class="sort-row">
+    {{!-- most students --}}
+    <button id="mostStudents" class="button-sort">
+      <a href="/courses/sort/mostStudents"><i class="fa fa-star fa-lg icon-sort"></i></a>
     </button>
-  </form>
+     {{!-- orden alfabetico --}}
+    <button id="alphabeticalAscending" class="button-sort">
+      <a href="/courses/sort/alphabeticalAscending"><i class="fa fa-chevron-up fa-lg icon-sort"></i></a>
+    </button>
+    <button id="alphabeticalDescending" class="button-sort">
+      <a href="/courses/sort/alphabeticalDescending"><i class="fa fa-chevron-down fa-lg icon-sort"></i></a>
+    </button>
+    {{!-- fecha --}}
+    <button id="creationAscending" class="button-sort">
+      <a href="/courses/sort/creationAscending"><i class="fa fa-calendar-plus-o fa-lg icon-sort"></i></a>
+    </button>
+    <button id="creationDescending" class="button-sort">
+      <a href="/courses/sort/creationDescending"><i class="fa fa-calendar-minus-o fa-lg icon-sort"></i></a>
+    </button>
+  </div>
 </div>
-
-<br>
-<div class="row">
-  {{!-- número alumnos --}}
-  <a class="button-css sort-btn" href="/courses/sort/mostStudents"><i class="fa fa-star"></i></a>
-  {{!-- orden alfabetico --}}
-  <a class="button-css sort-btn" href="/courses/sort/alphabeticalAscending"><i class="fa fa-chevron-down"></i></a>
-
-  <a class="button-css sort-btn" href="/courses/sort/alphabeticalDescending"><i class="fa fa-chevron-down"></i></a>
-  {{!-- fecha --}}
-  <a class="button-css sort-btn" href="/courses/sort/creationAscending"><i class="fa fa-calendar-plus-o"></i></a>
-
-  <a class="button-css sort-btn" href="/courses/sort/creationDescending"><i class="fa fa-calendar-minus-o"></i></a>
-</div>
-
 
 {{#each coursesArray}}
-  <div class="square-content-courses">
-    <div class="title-course text-center">{{name}}</div>
-    <br>
-    <div class="text-center">
-      <img src="{{image}}" alt="" srcset="">
-    </div>
-    <br>
-    <p class="course-resume">{{resume}}</p>
-    <div class="row align-items-center">
-      <a class="see-more-btn" href="/courses/{{id}}">See more</a>
-    </div>
+<div class="square-content-courses">
+  <h1 class="title-course text-center">{{name}}</h1>
+  <br>
+  <div class="text-center">
+    <img src="{{image}}" alt="" srcset="">
   </div>
-{{/each}}
-
-{{!-- {{#if !courseArray}}
-  <p>Sorry, there aren't courses about that.</p>
-  <p>Try <a href="/courses">something else</a> or look at the list of <a href="/courses">available coures</a></p>
-{{/if}} --}}
+  <br>
+  <div>
+    <p class="course-resume">{{resume}}</p>
+  </div>
+  <div class="course-resume">
+    {{!-- <div>
+      <i class="fa fa-users fa-lg icon-sort"></i>
+      <span>Total students: </span>
+      <span id="number-students">{{students.length}}</span>
+    </div> --}}
+  </div>
+  <div class="course-resume">
+    {{!-- <div>
+      <i class="fa fa-user fa-lg icon-sort"></i>
+      <span>Teacher: {{teacher.username}}</span>
+    </div> --}}
+  </div>
+  <br>
+  <div class="row align-items-center">
+    <a class="see-more-btn" href="/courses/{{id}}">See now!</a>
+  </div>
+</div>
+{{!-- {{#else}}
+<p>Sorry, there aren't courses about that.</p>
+<p>Try
+  <a href="/courses">something else</a> or look at the list of
+<a href="/courses">available coures</a>
+</p> --}}
+{{/each}} 

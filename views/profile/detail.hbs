@@ -1,6 +1,6 @@
 <!-- layout.hbs -->
 <div class="square-content-profile">
-    <h1 class="text-center title-course">Welcome {{name}}!</h1>
+    <h1 class="text-center title-profile">WELCOME {{name}}!</h1>
     <div class="info-profile">
         <p>
             <span class="user-information">Username: </span>
@@ -53,7 +53,7 @@
 
 <div class="square-content-profile">
     <div class="content-profile">
-        <h5>My courses</h5>
+        <h2>My courses</h2>
         {{#if stats.length}}
             <ul class="list-group list-group-flush">
             {{#each stats}}
@@ -74,4 +74,3 @@
         {{/if}}
     </div>
 </div>
-

@@ -13,8 +13,9 @@ a {
 }
 
 h1 {
-  color: #282a35;
+  color: #2239b9;
   font-size: 22px;
+  text-transform: uppercase;
 }
 
 .button-css {
@@ -35,6 +36,10 @@ h1 {
   padding: 5px 10px;
   margin-top: 0px;
   font-size: 14px;
+}
+
+.button-sort {
+
 }
 
 .see-more-btn {
@@ -95,6 +100,16 @@ li {
     margin: auto;
     max-width: 300px;
   }
+
+  .check-pass {
+    display: inline-block;
+  }
+
+  .show-pass {
+    font-size: 12px;
+    vertical-align: top
+  }
+
   .content {
     padding-left: 20px;
     padding-right: 20px;
@@ -113,6 +128,16 @@ li {
   }
 
   .title-course {
+    align-content: center;
+    color: #282a35;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  .title-profile {
     align-content: center;
     color: #282a35;
     padding-top: 20px;
@@ -169,6 +194,38 @@ li {
   .course-resume {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .filter-box {
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .filter-form {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+  }
+
+  .input-filter {
+    padding: 8px 8px;
+    border-style: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4f89f7;
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .sort-row {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .icon-sort {
+    color: #4f89f7;
   }
 
   .info-profile { 
