@@ -12,58 +12,70 @@
   <div class="sort-row">
     {{!-- most students --}}
     <button id="mostStudents" class="button-sort">
-      <a href="/courses/sort/mostStudents"><i class="fa fa-star fa-lg icon-sort"></i></a>
+      <a href="/courses/sort/mostStudents">
+        <i class="fa fa-star fa-lg icon-sort"></i>
+      </a>
     </button>
-     {{!-- orden alfabetico --}}
+    {{!-- orden alfabetico --}}
     <button id="alphabeticalAscending" class="button-sort">
-      <a href="/courses/sort/alphabeticalAscending"><i class="fa fa-chevron-up fa-lg icon-sort"></i></a>
+      <a href="/courses/sort/alphabeticalAscending">
+        <i class="fa fa-chevron-up fa-lg icon-sort"></i>
+      </a>
     </button>
     <button id="alphabeticalDescending" class="button-sort">
-      <a href="/courses/sort/alphabeticalDescending"><i class="fa fa-chevron-down fa-lg icon-sort"></i></a>
+      <a href="/courses/sort/alphabeticalDescending">
+        <i class="fa fa-chevron-down fa-lg icon-sort"></i>
+      </a>
     </button>
     {{!-- fecha --}}
     <button id="creationAscending" class="button-sort">
-      <a href="/courses/sort/creationAscending"><i class="fa fa-calendar-plus-o fa-lg icon-sort"></i></a>
+      <a href="/courses/sort/creationAscending">
+        <i class="fa fa-calendar-plus-o fa-lg icon-sort"></i>
+      </a>
     </button>
     <button id="creationDescending" class="button-sort">
-      <a href="/courses/sort/creationDescending"><i class="fa fa-calendar-minus-o fa-lg icon-sort"></i></a>
+      <a href="/courses/sort/creationDescending">
+        <i class="fa fa-calendar-minus-o fa-lg icon-sort"></i>
+      </a>
     </button>
   </div>
 </div>
-
-{{#each coursesArray}}
-<div class="square-content-courses">
-  <h1 class="title-course text-center">{{name}}</h1>
-  <br>
-  <div class="text-center">
-    <img src="{{image}}" alt="" srcset="">
+<div class="body-courses">
+  {{#each coursesArray}}
+  <div class="square-content-courses">
+    <h1 class="title-course text-center">{{name}}</h1>
+    <br>
+    <div class="text-center">
+      <img src="{{image}}" alt="" srcset="">
+    </div>
+    <br>
+    <div>
+      <p class="course-resume">{{resume}}</p>
+    </div>
+    <div class="course-resume">
+      {{!--
+      <div>
+        <i class="fa fa-users fa-lg icon-sort"></i>
+        <span>Total students: </span>
+        <span id="number-students">{{students.length}}</span>
+      </div> --}}
+    </div>
+    <div class="course-resume">
+      {{!--
+      <div>
+        <i class="fa fa-user fa-lg icon-sort"></i>
+        <span>Teacher: {{teacher.username}}</span>
+      </div> --}}
+    </div>
+    <br>
+    <div class="row align-items-center">
+      <a class="see-more-btn" href="/courses/{{id}}">See now!</a>
+    </div>
   </div>
-  <br>
-  <div>
-    <p class="course-resume">{{resume}}</p>
-  </div>
-  <div class="course-resume">
-    {{!-- <div>
-      <i class="fa fa-users fa-lg icon-sort"></i>
-      <span>Total students: </span>
-      <span id="number-students">{{students.length}}</span>
-    </div> --}}
-  </div>
-  <div class="course-resume">
-    {{!-- <div>
-      <i class="fa fa-user fa-lg icon-sort"></i>
-      <span>Teacher: {{teacher.username}}</span>
-    </div> --}}
-  </div>
-  <br>
-  <div class="row align-items-center">
-    <a class="see-more-btn" href="/courses/{{id}}">See now!</a>
-  </div>
+  {{!-- {{#else}}
+  <p>Sorry, there aren't courses about that.</p>
+  <p>Try
+    <a href="/courses">something else</a> or look at the list of
+    <a href="/courses">available coures</a>
+  </p> --}} {{/each}}
 </div>
-{{!-- {{#else}}
-<p>Sorry, there aren't courses about that.</p>
-<p>Try
-  <a href="/courses">something else</a> or look at the list of
-<a href="/courses">available coures</a>
-</p> --}}
-{{/each}} 
