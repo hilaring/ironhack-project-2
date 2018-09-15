@@ -2,7 +2,6 @@ const express = require('express');
 const Course = require('../models/course.js');
 const User = require('../models/user.js');
 const isUserLogged = require('../middlewares/isUserLogged');
-
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -18,20 +17,6 @@ router.get('/', (req, res, next) => {
 
 // FIND COURSES
 router.post('/search', (req, res, next) => {
-  // const searchInput = req.body.query;
-  // Course.find({
-  //   $text: {
-  //     $search: searchInput,
-  //     $caseSensitive: false,
-  //     $diacriticSensitive: false,
-  //   },
-  // }).sort({ name: 1 })
-  //   .then((coursesArray) => {
-  //     res.render('courses/list', { coursesArray, header: 'Courses Search' });
-  //   })
-  //   .catch((error) => {
-  //     next(error);
-  //   });
   const searchInput = req.body.query;
   Course.find({
     $text: {
@@ -58,7 +43,7 @@ router.post('/search', (req, res, next) => {
       Course.find({})
         // .sort({ name: 1 })
         .then((coursesArray) => {
-          // mensaje de que no hay resultados
+          req.flash('info', 'We don\'t have results');
           res.render('courses/list', { coursesArray, header: 'Courses' });
         })
         .catch((error) => {
@@ -69,16 +54,13 @@ router.post('/search', (req, res, next) => {
 });
 
 // SORT COURSES
-router.post('/sort', (req, res, next) => {
-  // const objBtn = JSON.parse(req.body);
-  const strBtn = JSON.stringify(req.body);
-  const btn = strBtn.replace('{"btnType":"', '').replace('"}', '');
-
+router.get('/sort/:type', (req, res) =>{
+  const { type } = req.params;
   let sortCase = {};
 
-  switch (btn) {
+  switch (type) {
     case 'mostStudents':
-      sortCase = { name: 1 };
+      sortCase = { name: -1 };
       break;
     case 'alphabeticalAscending':
       sortCase = { name: 1 };
@@ -98,19 +80,58 @@ router.post('/sort', (req, res, next) => {
 
   Course.find({})
     .sort(sortCase)
-    .exec((err, result) => {
-      res.status(200).json(result);
-      // if (result) {
-      //   res.redirect('/courses/list');
-      // }
-    });
-  // .then((coursesArray) => {
-  //   res.redirect('courses/list', coursesArray);
-  // })
-  // .catch((error) => {
-  //   next(error);
-  // });
+    .then((coursesArray) => {
+      if (coursesArray) {
+        res.render('courses/list', { coursesArray });
+      }
+    })
+    // .catch((error) => {
+    //   next(error);
+    // });
 });
+
+// router.post('/sort', (req, res, next) => {
+//   // const objBtn = JSON.parse(req.body);
+//   const strBtn = JSON.stringify(req.body);
+//   const btn = strBtn.replace('{"btnType":"', '').replace('"}', '');
+
+//   let sortCase = {};
+
+//   switch (btn) {
+//     case 'mostStudents':
+//       sortCase = { name: -1 };
+//       break;
+//     case 'alphabeticalAscending':
+//       sortCase = { name: 1 };
+//       break;
+//     case 'alphabeticalDescending':
+//       sortCase = { name: -1 };
+//       break;
+//     case 'creationAscending':
+//       sortCase = { createdAt: 1 };
+//       break;
+//     case 'creationDescending':
+//       sortCase = { createdAt: -1 };
+//       break;
+//     default:
+//       sortCase = { name: 1 };
+//   }
+
+//   Course.find({})
+//     .sort(sortCase)
+//     .exec((err, coursesArray) => {
+//       res.status(200).json(coursesArray);
+//       // if (coursesArray) {
+//       //   res.render('/courses/list', coursesArray);
+//       // }
+//     });
+//   // .then((coursesArray) => {
+//   //   res.redirect('courses/list', coursesArray);
+//   // })
+//   // .catch((error) => {
+//   //   next(error);
+//   // });
+// });
 
 // COURSE DETAIL
 router.get('/:id', isUserLogged, (req, res, next) => {
@@ -129,12 +150,23 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
   const courseId = req.params.id;
   const userId = req.session.currentUser._id; //eslint-disable-line
 
+  // User.find({ stats: $elemMatch: })
+  //   .exec((err, docs) => {
+  //     console.log(docs)
+  //   })
+
+  // User.findById(userId)
+  //   .exec((err, docs) => {
+  //     console.log(docs.stats);
+  //   });
+
+
   User.findById(userId)
     .then((user) => {
       user.stats.push({ courses: courseId, checked: false });
       user.save()
         .then(() => {
-          // mensaje de ok
+          req.flash('info', 'Added sucessfully');
           res.status(200).json({ courseId });
         })
         .catch((error) => {
@@ -163,6 +195,7 @@ router.post('/:id/review', isUserLogged, (req, res, next) => {
         course.reviews.push({ comment: userComment, author: userId, rate: userRate });
         course.save()
           .then(() => {
+            req.flash('info', 'Added sucessfully');
             res.redirect(`/courses/${courseId}`);
           })
           .catch((error) => {
@@ -173,6 +206,7 @@ router.post('/:id/review', isUserLogged, (req, res, next) => {
         next(error);
       });
   } else {
+    req.flash('info', 'Both fields cant be empty!');
     res.redirect(`/courses/${courseId}`);
   }
 });

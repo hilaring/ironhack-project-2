@@ -7,12 +7,12 @@ const saltRounds = 10;
 
 const User = require('../models/user');
 const isUserLoggedOut = require('../middlewares/isUserLoggedOut');
+const isUserLogged = require('../middlewares/isUserLogged');
 
 // SIGN UP
 router.get('/signup', isUserLoggedOut, (req, res) => {
-  const message = { messages: req.flash('info') };
   const signUp = 'Sign up';
-  res.render('auth/signup', { message, header: signUp });
+  res.render('auth/signup', { header: signUp });
 });
 
 router.post('/signup', isUserLoggedOut, (req, res, next) => {
@@ -36,7 +36,7 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
       .then((user) => {
         if (user) {
           req.flash('info', 'The username can\'t be repeated :(');
-          res.redirect('/auth/signup');
+          res.redirect('/auth/login');
         } else {
           User.create({
             username,
@@ -52,8 +52,8 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
           })
             .then((newUser) => {
               if (newUser) {
-                req.session.currentUser = newUser;
                 req.flash('info', 'You create a new user :)');
+                req.session.currentUser = newUser;
                 res.redirect('/courses');
               }
             })
@@ -67,14 +67,13 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
 
 // LOG IN
 router.get('/', isUserLoggedOut, (req, res) => {
-  const message = { messages: req.flash('info') };
-  res.render('/', message);
+  res.render('/');
 });
 
 router.post('/', isUserLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    req.flash('info', 'The fields can\'t be empty!');
+    req.flash('info', 'The fields cant be empty!');
     res.redirect('/');
   } else {
     User.findOne({ email })
@@ -82,13 +81,14 @@ router.post('/', isUserLoggedOut, (req, res, next) => {
         if (user) {
           if (bcrypt.compareSync(password, user.password)) {
             req.session.currentUser = user;
+            req.flash('info', 'Successfully logged');
             res.redirect('/courses');
           } else {
-            req.flash('info', 'Your email or password is incorrect :(');
+            req.flash('info', 'Your eamil or password is incorrect :(');
             res.redirect('/');
           }
         } else {
-          req.flash('info', 'Your email or password is incorrect :(');
+          req.flash('info', 'Your username or password is incorrect :(');
           res.redirect('/');
         }
       })
@@ -98,8 +98,9 @@ router.post('/', isUserLoggedOut, (req, res, next) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', isUserLogged, (req, res) => {
   delete req.session.currentUser;
+  req.flash('info', 'Log out sucessful');
   res.redirect('/');
 });
 

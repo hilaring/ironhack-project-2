@@ -38,6 +38,7 @@ router.post('/:id/detail', (req, res, next) => {
     phone,
   }, { new: true }) // eslint-disable-line
     .then(() => {
+      req.flash('info', 'Successfully edited');
       res.redirect('/profile');
     })
     .catch((error) => {
@@ -76,7 +77,8 @@ router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
   User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
     // hacer pull de lista de estudiantes de cursos
     .exec((err, result) => {
-      res.status(200).json(result)
+      req.flash('info', 'Successfully deleted');
+      res.status(200).json(result);
     });
 });
 
@@ -98,8 +100,8 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
   const { videoInput } = req.body;
   const videoEmbed = videoInput.replace('watch?v=', 'embed/');
 
-  if (!req.body.name || !req.body.category || !req.body.resume || !req.body.temary) {
-    // mensaje de error, necesita rellenar campos
+  if (!req.body.name && !req.body.category && !req.body.resume && !req.body.temary) {
+    req.flash('info', 'The fields name, category, resume and cant be empty!');
     res.redirect(`/profile/${userId}/teacher`);
   } else {
     const newCourse = {
@@ -120,6 +122,7 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
       } else {
         User.findByIdAndUpdate(userId, { $push: { coursesCreated: docsInserted._id } }, { new: true })
           .then(() => {
+            req.flash('info', 'Successfully created');
             res.redirect(`/profile/${userId}/teacher`);
           })
           .catch((error) => {

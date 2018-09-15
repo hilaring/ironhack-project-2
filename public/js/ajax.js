@@ -40,30 +40,28 @@ $(document).ready(() => {
         });
     });
 
-    $('.sort-btn:button').on('click', () => {
-        // alert($(this).val());
-        console.log($(event.target).attr('value'))
+    // $('.sort-btn:button').on('click', () => {
+    //     // alert($(this).val());
+    //     // console.log($(event.target).attr('value'))
+    //     const type = $(event.target).attr('value')
+    //     const data = {
+    //         btnType: $(event.target).attr('value')
+    //     }
 
-        const data = {
-            btnType: $(event.target).attr('value')
-        }
-
-        $.ajax({
-            url: `http://localhost:3333/courses/sort`,
-            method: 'POST',
-            dataType: 'json',
-            data: data,
-            success: (req, res, next) => {
-                console.log(data)
-                console.log('Request:', req);
-                console.log('Response:', res);
-                location.reload();
-            },
-            error: (error) => {
-                console.log('error:', error);
-            },
-        })
-    });
+    //     $.ajax({
+    //         url: `http://localhost:3333/courses/sort/:type`,
+    //         method: 'POST',
+    //         dataType: 'json',
+    //         data: data,
+    //         success: (data) => {
+    //             console.log(data)
+    //             // location.reload();
+    //         },
+    //         error: (error) => {
+    //             console.log('error:', error);
+    //         },
+    //     })
+    // });
 
     $('.remove-course').on('click', () => {
         console.log('remove course btn pressed')

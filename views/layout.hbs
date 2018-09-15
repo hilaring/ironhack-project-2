@@ -48,6 +48,9 @@
   </header>
   <section>
     <div class="content" style="margin-top:80px">
+  {{#each infoMessages}}
+    <div class="alert alert-warning">{{this}}</div>
+  {{/each}}
       {{{body}}}
     </div>
   </section>

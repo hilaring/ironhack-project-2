@@ -6,7 +6,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const flash = require('connect-flash');
+const flash = require('express-flash');
 const favicon = require('serve-favicon');
 
 require('dotenv').config();
@@ -24,7 +24,11 @@ const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
 const coursesRouter = require('./routes/courses');
 
+const messages = require('./middlewares/messages');
+
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,12 +48,12 @@ app.use(session({
   },
 }));
 
-app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+app.use(messages.notifications);
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
