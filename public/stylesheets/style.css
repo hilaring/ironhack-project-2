@@ -2,7 +2,7 @@
 
 body {
   font: 14px "Montserrat", sans-serif;
-  background-color: #4f89f7;
+  background-color: #F7F4EA;
   /* background-image: url("/images/background.jpg"); */
   background-attachment: fixed;
 }
@@ -20,7 +20,7 @@ h1 {
 
 .button-css {
   margin: auto;
-  background-color: #4f89f7;
+  background-color: #0087BE;
   border-radius: 20px;
   color: white;
   padding: 7px 40px;
@@ -30,7 +30,7 @@ h1 {
 
 .button-css-info {
   margin: auto;
-  background-color: #4f89f7;
+  background-color: #0087BE;
   border-radius: 20px;
   color: white;
   padding: 5px 10px;
@@ -44,7 +44,7 @@ h1 {
 
 .see-more-btn {
   margin: auto;
-  background-color: #4f89f7;
+  background-color: #0087BE;
   border-radius: 20px;
   color: white;
   padding: 7px 40px;
@@ -115,6 +115,10 @@ li {
     padding-right: 20px;
   }
 
+  .body-courses {
+    padding-bottom: 80px;
+  }
+
   .title-page {
     margin: auto;
     padding-top: 20px;
@@ -180,7 +184,7 @@ li {
     padding-bottom: 35px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 3px 4px #282a35;
+    box-shadow: 3px 3px #DED9E2;
   }
 
   .square-content-profile {
@@ -188,7 +192,7 @@ li {
     padding-bottom: 35px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 3px 4px #282a35;
+    box-shadow: 3px 1px #DED9E2;
   }
 
   .course-resume {
@@ -212,7 +216,7 @@ li {
     padding: 8px 8px;
     border-style: none;
     padding-bottom: 5px;
-    border-bottom: 1px solid #4f89f7;
+    border-bottom: 1px solid #0087BE;
     width: 90%;
     font-size: 16px;
   }
@@ -225,7 +229,7 @@ li {
   }
 
   .icon-sort {
-    color: #4f89f7;
+    color: #0087BE;
   }
 
   .info-profile { 
@@ -240,7 +244,7 @@ li {
   .fields-profile {
     border: none;
     padding-bottom: 5px;
-    border-bottom: 1px solid #4f89f7;
+    border-bottom: 1px solid #0087BE;
     width: 100%;
     font-size: 16px;
   }
@@ -286,7 +290,7 @@ li {
   }
 
   .input-btn {
-    color: #4f89f7;
+    color: #0087BE;
     font-weight: 500;
   }
 
@@ -387,7 +391,7 @@ li {
   }
 
   .input-btn {
-    color: #4f89f7;
+    color: #0087BE;
   }
 
   .square-course {
