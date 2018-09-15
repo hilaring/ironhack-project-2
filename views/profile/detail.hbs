@@ -57,7 +57,7 @@
         {{#if stats.length}}
             <ul class="list-group list-group-flush">
             {{#each stats}}
-                <li class="list-group-item hide">
+                <li id="{{courses.id}}"class="list-group-item hide">
                     <p>{{courses.name}}</p>
                     <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
                     <label for="checkbox">Complete</label>

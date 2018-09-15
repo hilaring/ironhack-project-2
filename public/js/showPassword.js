@@ -9,3 +9,5 @@ $(document).ready(() => {
     }
   });
 })
+
+$('.alert-warning').slideUp(2000);

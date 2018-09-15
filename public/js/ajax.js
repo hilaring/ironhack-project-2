@@ -8,25 +8,25 @@ $(document).ready(() => {
         $.ajax({
             url: `http://localhost:3333/courses/${courseId}/add`,
             method: 'POST',
-            success: (req, res, next) => {
-                console.log('Request:', req);
-                console.log('Response:', res);
+            success: (data) => {
+                console.log('Data:', data);
             },
             error: (error) => {
                 console.log('error:', error);
             },
         })
-
-        $(document).ajaxSuccess(() => { 
-            if ($('#add-icon').hasClass('fa-plus')) { 
-                $('#add-icon').removeClass('fa-plus').addClass('fa-minus');
-            } else {
-                $('#add-icon').removeClass('fa-minus').addClass('fa-plus');
-            }
+        location.reload();
+        
+        // $(document).ajaxSuccess(() => { 
+            // if ($('#add-icon').hasClass('fa-plus')) { 
+            //     $('#add-icon').removeClass('fa-plus').addClass('fa-minus');
+            // } else {
+            //     $('#add-icon').removeClass('fa-minus').addClass('fa-plus');
+            // }
             // .load no funciona, hace una copia de la pagina :S
             // $('#container-number-students').load('#number-students')
 
-            location.reload();
+            // location.reload();
             // recarga la web entera
             // $(function () {
             //     $('#number-students').fadeIn(100);
@@ -37,54 +37,32 @@ $(document).ready(() => {
             //         });
             //     }, 100);
             // });
-        });
+        // });
     });
 
-    // $('.sort-btn:button').on('click', () => {
-    //     // alert($(this).val());
-    //     // console.log($(event.target).attr('value'))
-    //     const type = $(event.target).attr('value')
-    //     const data = {
-    //         btnType: $(event.target).attr('value')
-    //     }
-
-    //     $.ajax({
-    //         url: `http://localhost:3333/courses/sort/:type`,
-    //         method: 'POST',
-    //         dataType: 'json',
-    //         data: data,
-    //         success: (data) => {
-    //             console.log(data)
-    //             // location.reload();
-    //         },
-    //         error: (error) => {
-    //             console.log('error:', error);
-    //         },
-    //     })
-    // });
-
     $('.remove-course').on('click', () => {
-        console.log('remove course btn pressed')
+        console.log('remove course, btn pressed')
         const courseId = $('.remove-course').attr('value');
         console.log(courseId)
 
         $.ajax({
             url: `http://localhost:3333/profile/${courseId}/remove`,
             method: 'POST',
-            success: (req, res, next) => {
-                console.log('Request:', req);
-                console.log('Response:', res);
+            success: (data) => {
+                $('.hide').slideUp();
+                console.log('data:', data);
             },
             error: (error) => {
                 console.log('error:', error);
             },
         })
 
-        $(document).ajaxSuccess(() => {
-            location.reload();
+        // $(document).ajaxSuccess(() => {
+        //     $(event.target).slideUp();
+            // location.reload();
             // $(event.target).slideUp()
             // $('hide').slideUp()
-        });
+        // });
     });
 
     $(window).ajaxStart(() => { console.log('Ajax Start'); }); // hay una req de ajax y ninguna otra corriendo

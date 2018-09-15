@@ -2,6 +2,7 @@ const express = require('express');
 const Course = require('../models/course.js');
 const User = require('../models/user.js');
 const isUserLogged = require('../middlewares/isUserLogged');
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -54,7 +55,7 @@ router.post('/search', (req, res, next) => {
 });
 
 // SORT COURSES
-router.get('/sort/:type', (req, res) =>{
+router.get('/sort/:type', (req, res) => {
   const { type } = req.params;
   let sortCase = {};
 
@@ -84,10 +85,10 @@ router.get('/sort/:type', (req, res) =>{
       if (coursesArray) {
         res.render('courses/list', { coursesArray });
       }
-    })
-    // .catch((error) => {
-    //   next(error);
-    // });
+    });
+  // .catch((error) => {
+  //   next(error);
+  // });
 });
 
 // router.post('/sort', (req, res, next) => {
@@ -155,32 +156,43 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
   //     console.log(docs)
   //   })
 
+  Course.findById(courseId)
+    .then((course) => {
+      if (course.students.indexOf(userId) !== -1) {
+        console.log('ya estoy en el curso');
+        req.flash('info', 'ya estas capullo');
+      } else {
+        console.log('no toy!');
+        User.findById(userId)
+          .then((user) => {
+            user.stats.push({ courses: courseId, checked: false });
+            user.save()
+              .then(() => {
+                req.flash('info', 'Added sucessfully');
+                res.status(200).json({ courseId });
+              })
+              .catch((error) => {
+                next(error);
+              });
+          })
+          .catch((error) => {
+            res.status(500).json({ error });
+          });
+
+        Course.findByIdAndUpdate(courseId, { $push: { students: userId } }, { new: true })
+          .exec((err, result) => {
+            res.status(200).json(result);
+          });
+      }
+    })
+    .catch((error) => {
+      next(error);
+    });
+
   // User.findById(userId)
   //   .exec((err, docs) => {
   //     console.log(docs.stats);
   //   });
-
-
-  User.findById(userId)
-    .then((user) => {
-      user.stats.push({ courses: courseId, checked: false });
-      user.save()
-        .then(() => {
-          req.flash('info', 'Added sucessfully');
-          res.status(200).json({ courseId });
-        })
-        .catch((error) => {
-          next(error);
-        });
-    })
-    .catch((error) => {
-      res.status(500).json({ error });
-    });
-
-  Course.findByIdAndUpdate(courseId, { $push: { students: userId } }, { new: true })
-    .exec((err, result) => {
-      res.status(200).json(result);
-    });
 });
 
 //  REVIEWS OF USERS
