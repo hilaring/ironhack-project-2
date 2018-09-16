@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 const saltRounds = 10;
 
@@ -52,9 +53,29 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
           })
             .then((newUser) => {
               if (newUser) {
-                req.flash('info', 'You create a new user :)');
-                req.session.currentUser = newUser;
-                res.redirect('/courses');
+                const message = 'You create a user in Courstory, start to learn!';
+                const transporter = nodemailer.createTransport({
+                  service: 'Gmail',
+                  auth: {
+                    user: 'courstoryweb@gmail.com',
+                    pass: 'ToyStory3',
+                  },
+                });
+                transporter.sendMail({
+                  from: '"Courstory e-Learning Platform" <courstoryweb@gmail.com>',
+                  to: email,
+                  subject: `Welcome to Courstory, ${username}`,
+                  text: message,
+                  html: `<b>${message}</b>`,
+                })
+                  .then(() => {
+                    req.flash('info', 'You create a new user :)');
+                    req.session.currentUser = newUser;
+                    res.redirect('/courses');
+                  })
+                  .catch((error) => {
+                    next(error);
+                  });
               }
             })
             .catch((error) => {
@@ -98,6 +119,7 @@ router.post('/', isUserLoggedOut, (req, res, next) => {
   }
 });
 
+// LOG OUT
 router.post('/logout', isUserLogged, (req, res) => {
   delete req.session.currentUser;
   req.flash('info', 'Log out sucessful');

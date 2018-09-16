@@ -1,4 +1,5 @@
 const express = require('express');
+const youtubeInfo = require('youtube-info');
 const User = require('../models/user'); // eslint-disable-line
 const Course = require('../models/course.js'); // eslint-disable-line
 const isUserLogged = require('../middlewares/isUserLogged');
@@ -74,17 +75,20 @@ router.post('/:id/delete', (req, res, next) => {
 router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
   const userID = req.session.currentUser._id; //eslint-disable-line
   const courseId = req.params.id;
-  User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
-    // hacer pull de lista de estudiantes de cursos
-    .exec((err, result) => {
-      req.flash('info', 'Successfully deleted');
-      res.status(200).json(result);
+  Course.findByIdAndUpdate(courseId, { $pull: { students: userID } }, { new: true })
+    .then(() => {
+      User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
+        // hacer pull de lista de estudiantes de cursos
+        .exec((err, result) => {
+          req.flash('info', 'Successfully deleted');
+          res.status(200).json(result);
+        });
     });
 });
 
 // TEACHER'S SPACE
 router.get('/:id/teacher', isUserTeacher, (req, res, next) => {
-  const userId = req.session.currentUser._id;
+  const userId = req.session.currentUser._id; // eslint-disable-line
   User.findById(userId)
     .populate('coursesCreated')
     .then((resultUser) => {
@@ -131,6 +135,23 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
       }
     });
   }
+});
+
+// autocomplete fields course create
+router.post('/:id/autocomplete', isUserTeacher, (req, res, next) => {
+  const userId = req.session.currentUser._id; //eslint-disable-line
+  let { username, name, lastname, birth, email, phone } = req.body;
+  const { videoInputAuto } = req.body;
+  const videoId = videoInputAuto.replace('https://www.youtube.com/watch?v=', '');
+
+  youtubeInfo(videoId)
+    .then((videoInfo) =>{
+      console.log(videoInfo.title);
+      res.redirect(`/profile/${userId}/teacher`);
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;
