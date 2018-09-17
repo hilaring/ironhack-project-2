@@ -8,16 +8,19 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const favicon = require('serve-favicon');
+const Handlebars = require('hbs');
 
 require('dotenv').config();
 
+/* eslint-disable */
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((connection) => {
     console.log('Connected to MongoDB');
   })
   .catch((error) => {
     console.log(error.message);
-  })
+  });
+/* eslint-enable */
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -65,15 +68,23 @@ app.use((req, res, next) => {
   next(createError(404));
 });
 
+// handlebars helper
+Handlebars.registerHelper('equal', (valOne, valTwo, options) => {
+  if (valOne !== valTwo) {
+    return options.inverse(this);
+  }
+  return options.fn(this);
+});
+
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => { // eslint-disable-line
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   switch (err.status) {
     case 404:
       res.status(err.status || 404);
-      res.render('errors/error404')
+      res.render('errors/error404');
       break;
     case 500:
       res.status(err.status || 500);
@@ -84,7 +95,6 @@ app.use((err, req, res, next) => {
       res.render('errors/error500');
       break;
   }
-  // render the error page
 });
 
 module.exports = app;
