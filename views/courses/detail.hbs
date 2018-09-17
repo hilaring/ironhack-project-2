@@ -1,62 +1,72 @@
 <!-- layout.hbs -->
-<div class="square-content-courses">
-    <div class="title-course text-center">{{name}}</div>
-    <br>
-    <div>
-        <p id="container-number-students">
-        {{!-- <i class="fa fa-user fa-lg icon-sort"></i> --}}
-        <i class="course-resume">Teacher: {{teacher.username}}</i>
-        </p>
-    </div>
-    <div>
-    <p class="course-resume">{{temary}}</p>
-    </div>
-    <div  class="course-video"><iframe class="course-resume" src="{{video}}"></iframe></div>
-    <div>
-        <p id="container-number-students" class="text-center"><i class="fa fa-users fa-lg icon-sort"></i>Number of students: <i id="number-students">{{students.length}}</i></p>
-    </div>
-    <button id="add" type="submit" value="{{_id}}" class="button-css row align-items-center">
-        <i id="add-icon" class="fa fa-heart"></i>
-    </button>
-</div>
-
-    <div class="title-course">Reviews of the course</div>
-    <form action="/courses/{{id}}/review" method="post">
-        <div class="col">
-            <label for="rate">Rate the course:</label>
-            <select class="selectpicker show-tick" id="rate" name="userRate">
-                <option></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+<div class="body-courses">
+    <div class="square-content-courses">
+        <div class="title-course text-center">{{name}}</div>
+        <br>
+        <div>
+            <p class="course-resume">{{temary}}</p>
         </div>
-        <div class="col">    
-            <label for="comment">Comment:</label>
-            <textarea class="form-control text-transition" type="text" name="userComment" placeholder="your comment" maxlength="200" rows="6" cols="40"></textarea>
-            {{!-- <input class="form-control text-transition" type="text" name="userComment" placeholder="your comment" maxlength="200"> --}}
-            <button type="submit">
-                <i class="fa fa-send"></i>
-            </button>
+        <div class="course-video">
+            <iframe class="course-resume" src="{{video}}"></iframe>
         </div>
-    </form>
-
-    {{#if reviews.length}}
-        {{#each reviews}}
-            <div class="square-content-courses">
-                <h6 class="card-header">{{author.username}}</h6>
-                 {{#if rate}}
-                    <p class="course-resume"> My rate is: {{rate}}</p>
-                 {{/if}}
-                <p class="course-resume">{{comment}}</p>
+        <div class="course-info">
+            <div>
+                <p id="container-number-students" class="text-center">
+                    <i class="fa fa-users fa-lg icon-sort"></i>Number of students:
+                    <i id="number-students">{{students.length}}</i>
+                </p>
             </div>
-        {{/each}}
-    {{else}}
-        <div class="square-content-courses">
-            <p class="course-resume">Any review yet</p>
+            <div>
+                <p>
+                    <i class="fa fa-street-view fa-2x icon-sort"></i>
+                    <i>{{teacher.username}}</i>
+                </p>
+            </div>
         </div>
-    {{/if}}
+        <button id="add" type="submit" value="{{_id}}" class="button-css row align-items-center">
+            <i id="add-icon" class="fa fa-heart"></i>
+        </button>
+    </div>
+    <div class="square-content-profile">
+        <div class="title-course course-resume">
+            <h2>Reviews</h2>
+            <form action="/courses/{{id}}/review" method="post">
+                <div class="col">
+                    <div>
+                        <select class="selectpicker show-tick selector" aria-placeholder="Hola" id="rate" name="userRate">
+                            <option value="" disabled selected >- Select your rate -</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <textarea class="field-detail fields-profile" type="text" name="userComment" placeholder="Write your comment..." maxlength="200"></textarea>
+                        <div class="text-center">
+                        <button class="button-css" type="submit">
+                            <i class="fa fa-send"></i>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                {{#if reviews.length}} {{#each reviews}}
+                <div>
+                    {{#if rate}}
+                    <h3>{{author.username}}</h3>
+                    <p class="course-resume">Rate: {{rate}}</p>
+                    {{/if}}
+                    <p class="course-resume">Comment: {{comment}}</p>
 
-
+                    {{/each}} {{else}}
+                    <p class="course-resume">Any review yet</p>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>

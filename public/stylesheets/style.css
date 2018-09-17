@@ -3,10 +3,13 @@
 body {
   font: 14px "Montserrat", sans-serif;
   background-color: #F7F7F7;
-  /* background-color: #F2F4F7; */
-  /* background-color: #F7F4EA; */
   /* background-image: url("/images/background.jpg"); */
   background-attachment: fixed;
+}
+
+img {
+  max-width: 300px;
+  max-height: 157px;
 }
 
 a {
@@ -15,10 +18,20 @@ a {
 }
 
 h1 {
-  color: #0087BE;;
-  /* color: #2239b9; */
+  color: #212529;
   font-size: 22px;
   text-transform: uppercase;
+}
+
+h2 {
+  color: black;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+h3 {
+  color: black;
+  font-size: 18px;
 }
 
 .button-css {
@@ -39,10 +52,6 @@ h1 {
   padding: 5px 10px;
   margin-top: 0px;
   font-size: 14px;
-}
-
-.button-sort {
-
 }
 
 .see-more-btn {
@@ -66,7 +75,8 @@ li {
 }
 
 .nav-item:active {
-  font-size: 25px;
+  color: #F7F4EA;
+  text-decoration: none;
 }
 
 .navbar-style {
@@ -92,11 +102,20 @@ li {
   justify-content: space-around;
 }
 
+.text-transition:focus::placeholder {
+  transform: translateX(80px);
+  opacity: 0;
+  transition: all .5s ease;
+  }
 
 @media (max-width: 736px) {
   a {
     color: white;
     font-weight: 600;
+  }
+
+  h2 {
+    text-transform: none;
   }
 
   .form {
@@ -122,6 +141,14 @@ li {
     padding-bottom: 80px;
   }
 
+  .body-course-detail {
+    padding-bottom: 80px;
+  }
+
+  .body-profile {
+    padding-bottom: 80px;
+  }
+
   .title-page {
     margin: auto;
     padding-top: 20px;
@@ -136,8 +163,7 @@ li {
 
   .title-course {
     align-content: center;
-    /* color: #282a35; */
-    color: #E54B4B;
+    color: #282a35;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 22px;
@@ -147,8 +173,7 @@ li {
 
   .title-profile {
     align-content: center;
-    /* color: #282a35; */
-    color: #E54B4B;
+    color: #282a35;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 22px;
@@ -189,7 +214,17 @@ li {
     padding-bottom: 35px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 3px 3px #DED9E2;
+    /* border: 0.5px solid #282a35; */
+    /* box-shadow: 3px 3px #DED9E2; */
+  }
+
+  .square-content-review {
+    margin-top: 35px;
+    padding-bottom: 35px;
+    background-color: white;
+    border-radius: 20px;
+    /* box-shadow: 3px 3px #DED9E2; */
+    padding-bottom: 80px;
   }
 
   .square-content-profile {
@@ -197,12 +232,13 @@ li {
     padding-bottom: 35px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 3px 1px #DED9E2;
+    /* box-shadow: 3px 1px #DED9E2; */
   }
 
   .course-resume {
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 14px;
   }
 
   .filter-box {
@@ -221,8 +257,8 @@ li {
     padding: 8px 8px;
     border-style: none;
     padding-bottom: 5px;
-    /* border-bottom: 1px solid #0087BE; */
-    border-bottom: 1px solid #E54B4B;
+    border-bottom: 1px solid #0087BE;
+    /* border-bottom: 1px solid #E54B4B; */
     width: 90%;
     font-size: 16px;
   }
@@ -250,8 +286,16 @@ li {
   .fields-profile {
     border: none;
     padding-bottom: 5px;
-    border-bottom: 1px solid #E54B4B;
-    /* border-bottom: 1px solid #0087BE; */
+    /* border-bottom: 1px solid #E54B4B; */
+    border-bottom: 1px solid #0087BE;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .fields-review {
+    border: none;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #0087BE;
     width: 100%;
     font-size: 16px;
   }
@@ -279,7 +323,13 @@ li {
   }
 
   .content-profile {
-    padding: 50px 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .content-teacher {
+    margin-left: 20px;
+    margin-right: 20px;
   }
 
   .icon-navbar {
@@ -305,6 +355,17 @@ li {
     margin-top: 60px;
     background-color: white;
     border-radius: 5px;
+  }
+
+  .course-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .selector {
+    width: 100%;
+    border-bottom: 1px solid #0087BE;
   }
   
   .footer-menu {
@@ -387,7 +448,105 @@ li {
 
   .square-content-profile {
     margin-top: 35px;
+    padding-bottom: 80px;
+    background-color: white;
+    border-radius: 5px;
+    /* box-shadow: 3px 4px grey; */
+  }
+
+  .icon-navbar {
+    color: white;
+  }
+
+  .input-btn {
+    color: #0087BE;
+  }
+
+  .square-course {
+    margin-top: 60px;
+    background-color: white;
+    border-radius: 5px;
+  }
+}
+
+/* 
+@media (min-width: 992px) and (max-width: 2000px) {
+  .form {
+    margin: auto;
+    max-width: 300px;
+    height: 600px;
+  }
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .header-title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: white;
+  }
+
+  .title-page {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 28px;
+  }
+
+  .title-courses-page {
+    margin: auto;
+    padding-bottom: 10px;
+    font-size: 25px;
+  }
+
+  .title-course {
+    align-content: center;
+    color: #f59b99;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .course-description {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .form {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    max-width: 300px;
+  }
+
+  .square-content {
+    margin-top: 60px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .square-content-signup {
+    margin-top: 35px;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .square-content-courses {
+    margin-top: 35px;
     padding-bottom: 35px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 4px grey;
+    width: 30%;
+  }
+
+  .square-content-profile {
+    margin-top: 35px;
+    padding-bottom: 80px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 3px 4px grey;
@@ -406,13 +565,9 @@ li {
     background-color: white;
     border-radius: 5px;
   }
-}
+} */
 
-.text-transition:focus::placeholder {
-transform: translateX(80px);
-opacity: 0;
-transition: all .5s ease;
-}
+
 /* 
 .alert-warning {
   transform: translateX(80px);

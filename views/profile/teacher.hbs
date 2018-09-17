@@ -1,43 +1,45 @@
 <!-- layout.hbs -->
-<h1 class="title-page text-center">Teacher's Space</h1>
 <div class="square-content-profile">
-  <div class="content-profile">
+  <h1 class="title-page text-center">Teacher's Space</h1>
+  <div class="content-teacher">
     <br>
-    <h5>Courses created</h5>
+    <h2>Created courses</h2>
     {{#if coursesCreated.length}}
-      <ul>
+    <ul>
       {{#each coursesCreated}}
-        <li>
-          <p>{{this.name}}</p>
-          <a class="input-btn" href="/courses/{{this.id}}">Go to your course</a>
-          <p>Number of students: {{this.students.length}}</p>
-          <a class="input-btn" href="/profile/{{id}}/courseedit">Edit course</a>
-        </li>
+      <li>
+        <p>{{this.name}}</p>
+        <a class="input-btn" href="/courses/{{this.id}}">Go to your course</a>
+        <p>Number of students: {{this.students.length}}</p>
+        <a class="input-btn" href="/profile/{{id}}/courseedit">Edit course</a>
+      </li>
       {{/each}}
-      </ul>
+    </ul>
     {{else}}
-      <p>You don't create any course yet :(</p>
+    <p>You don't create any course yet :(</p>
     {{/if}}
   </div>
 </div>
 <br>
 <h5>Create your course</h5>
-<div class="squaare-content-profile">
-  <div class ="content-profile">
-    <section class="form">
+<div>
+  <div>
+    <section>
       <form action="/profile/{{id}}/createcourse" method="POST">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <input type="url" class="form-control" id="course-video" name="videoInput" placeholder="Url video">
+        <div>
+          <div class="field-detail">
+            <p class="title-field">YouTube URL</p>
+            <input type="url" class="field-profile text-transition" id="course-video" name="videoInput" placeholder="Url video" required>
           </div>
-          <div class="form-group col-md-6">
-            <input type="text" class="form-control" id="course-resume" name="resume" placeholder="Course's resume" required>
+          <div class="field-detail">
+            <input type="text" class="field-profile text-transition" id="course-resume" name="resume" placeholder="Course's resume" required>
           </div>
-          <div class="form-group col-md-6">
-             <textarea class="form-control text-transition" id="course-resume" name="temary" placeholder="Course's temary" type="text" rows="6" cols="40" required></textarea>
+          <div class="field-detail">
+            <textarea class="field-profile text-transition" id="course-resume" name="temary" placeholder="Course's temary" type="text"
+              rows="6" cols="40" required></textarea>
           </div>
-        <input type="submit" class="button-css row align-items-center" value="Create course"></input>
+          <input type="submit" class="button-css row align-items-center" value="Create course"></input>
       </form>
     </section>
+    </div>
   </div>
-</div>

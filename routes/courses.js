@@ -108,10 +108,8 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
   Course.findById(courseId)
     .then((course) => {
       if (course.students.indexOf(userId) !== -1) {
-        console.log('ya estoy en el curso');
         req.flash('info', 'You are already subscribed to the course');
       } else {
-        console.log('no toy!');
         User.findById(userId)
           .then((user) => {
             user.stats.push({ courses: courseId, checked: false });

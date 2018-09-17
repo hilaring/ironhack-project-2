@@ -1,59 +1,65 @@
 <!-- layout.hbs -->
+<div class="body-profile">
 <div class="square-content-profile">
     <h1 class="text-center title-profile">WELCOME {{name}}!</h1>
     <div class="info-profile">
-        <p>
-            <span class="user-information">Username: </span>
-            <span>{{username}}</span>
-        </p>
-        <p>
-            <span class="user-information">Name: </span>
-            <span>{{name}}</span>
-        </p>
-        <p>
-            <span class="user-information">Last name: </span>
-            <span>{{lastname}}</span>
-        </p>
-        <p>
-            <span class="user-information">Birthday: </span>
-            <span>{{birth}}</span>
-        </p>
-        <p>
-            <span class="user-information">Email: </span>
-            <span>{{email}}</span>
-        </p>
-        <p>
-            <span class="user-information">Phone: </span>
-            <span>{{phone}}</span>
-        </p>
-        <p>
-            <span class="user-information">Teacher: </span>
-            <span>{{teacher}}</span>
-        </p>
-    </div>
+        <div class="field-detail fields-profile">
+            <p class="title-field">USERNAME</p>
+            <span class="fields-profile">{{username}}</span>
+        </div>
+        <div class="field-detail fields-profile">
+            <p class="title-field">EMAIL</p>
+            <span class="fields-profile">{{email}}</span>
+        </div>
+        <div class="field-detail fields-profile">
+            <p class="title-field">PHONE</p>
+            <span class="fields-profile">{{phone}}</span>
+        </div>
+        <br>
     <div>
         <div class="row align-items-center">
             <a class="see-more-btn" href="/profile/{{_id}}/edit">Edit</a>
         </div>
         <br>
-        <div class="row align-items-center">
+        {{!-- <div class="row align-items-center">
             <form action="/profile/{{_id}}/delete" method="post">
             <input class="info-profile see-more-btn" type="submit" value="Delete Account">
+            <p>Cambiar boton a EDIT</p>
         </form>
-        </div>
+        </div> --}}
+    </div>
+    <div class="content-profile">
+        <h2>Your courses</h2>
+        {{#if stats.length}}
+            <ul class="list-group list-group-flush">
+            {{#each stats}}
+                <li id="{{courses.id}}"class="list-group-item hide">
+                    <p>{{courses.name}}</p>
+                    <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
+                    <label for="checkbox">Complete</label>
+                    <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false">
+                    <button type="submit" value="{{this._id}}" class="input-btn remove-course">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
+                </li>
+            {{/each}}
+            </ul>
+        {{else}}
+        <p>You don't suscribe at any course yet :(</p>
+        <p><a class="input-btn" href="/courses">Check our awesome courses!</a></p>
+        {{/if}}
+    </div>
+    <div>
+    {{#equal teacher true}}
+        <p class="text-center"><a class="input-btn" href="/profile/teacher">Teacher's Space</a></p>
+    {{/equal}}
     </div>
     <br>
 </div>
 
-{{#equal teacher true}}
-<div class="square-content-profile">
-    <div class="content-profile">
-        <p><a class="input-btn" href="/profile/teacher">Go to Teacher's Space</a></p>
-    </div>
-</div>
-{{/equal}}
 
-<div class="square-content-profile">
+
+{{!-- <div>
     <div class="content-profile">
         <h2>My courses</h2>
         {{#if stats.length}}
@@ -74,5 +80,6 @@
         <p>You don't suscribe at any course yet :(</p>
         <p><a class="input-btn" href="/courses">Check our awesome courses!</a></p>
         {{/if}}
-    </div>
+    </div> --}}
+</div>
 </div>
