@@ -86,53 +86,7 @@ router.get('/sort/:type', (req, res) => {
         res.render('courses/list', { coursesArray });
       }
     });
-  // .catch((error) => {
-  //   next(error);
-  // });
 });
-
-// router.post('/sort', (req, res, next) => {
-//   // const objBtn = JSON.parse(req.body);
-//   const strBtn = JSON.stringify(req.body);
-//   const btn = strBtn.replace('{"btnType":"', '').replace('"}', '');
-
-//   let sortCase = {};
-
-//   switch (btn) {
-//     case 'mostStudents':
-//       sortCase = { name: -1 };
-//       break;
-//     case 'alphabeticalAscending':
-//       sortCase = { name: 1 };
-//       break;
-//     case 'alphabeticalDescending':
-//       sortCase = { name: -1 };
-//       break;
-//     case 'creationAscending':
-//       sortCase = { createdAt: 1 };
-//       break;
-//     case 'creationDescending':
-//       sortCase = { createdAt: -1 };
-//       break;
-//     default:
-//       sortCase = { name: 1 };
-//   }
-
-//   Course.find({})
-//     .sort(sortCase)
-//     .exec((err, coursesArray) => {
-//       res.status(200).json(coursesArray);
-//       // if (coursesArray) {
-//       //   res.render('/courses/list', coursesArray);
-//       // }
-//     });
-//   // .then((coursesArray) => {
-//   //   res.redirect('courses/list', coursesArray);
-//   // })
-//   // .catch((error) => {
-//   //   next(error);
-//   // });
-// });
 
 // COURSE DETAIL
 router.get('/:id', isUserLogged, (req, res, next) => {
@@ -150,11 +104,6 @@ router.get('/:id', isUserLogged, (req, res, next) => {
 router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-line
   const courseId = req.params.id;
   const userId = req.session.currentUser._id; //eslint-disable-line
-
-  // User.find({ stats: $elemMatch: })
-  //   .exec((err, docs) => {
-  //     console.log(docs)
-  //   })
 
   Course.findById(courseId)
     .then((course) => {
@@ -188,11 +137,6 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
     .catch((error) => {
       next(error);
     });
-
-  // User.findById(userId)
-  //   .exec((err, docs) => {
-  //     console.log(docs.stats);
-  //   });
 });
 
 //  REVIEWS OF USERS

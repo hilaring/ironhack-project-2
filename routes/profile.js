@@ -11,25 +11,24 @@ router.get('/', isUserLogged, (req, res) => {
   const userId = req.session.currentUser._id; // eslint-disable-line
   User.findById(userId).populate('stats.courses')
     .then((resultUser) => {
-      // let birthday = resultUser.birth
-      // let date = birthday.slice(0, 10)
-      // resultUser.birth = date
       res.render('profile/detail', resultUser);
     });
 });
 
 // EDIT USER PROFILE
-router.post('/:id/detail', (req, res, next) => {
+router.post('/:id/detail', isUserLogged, (req, res, next) => {
   const { id } = req.params;
   const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
   const teacherResponse = req.body;
   let teacherTrueFalse = false;
+
   if (teacherResponse === 'no') {
     teacherTrueFalse = false;
   } else {
     teacherTrueFalse = true;
   }
-  User.findByIdAndUpdate(id, { 
+
+  User.findByIdAndUpdate(id, {
     username,
     teacher: teacherTrueFalse,
     name,
@@ -47,7 +46,7 @@ router.post('/:id/detail', (req, res, next) => {
     });
 });
 
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', isUserLogged, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {
@@ -59,7 +58,7 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 // DELETE USER ACCOUNT
-router.post('/:id/delete', (req, res, next) => {
+router.post('/:id/delete', isUserLogged, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndRemove(id)
     .then(() => {
@@ -72,13 +71,13 @@ router.post('/:id/delete', (req, res, next) => {
 });
 
 // DELETE COURSE IN PROFILE
-router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
+router.post('/:id/remove', isUserLogged, (req, res, next) => { //eslint-disable-line
   const userID = req.session.currentUser._id; //eslint-disable-line
   const courseId = req.params.id;
   Course.findByIdAndUpdate(courseId, { $pull: { students: userID } }, { new: true })
     .then(() => {
       User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
-        // hacer pull de lista de estudiantes de cursos
+        // TODO: hacer pull de lista de estudiantes de cursos
         .exec((err, result) => {
           req.flash('info', 'Successfully deleted');
           res.status(200).json(result);
@@ -87,7 +86,7 @@ router.post('/:id/remove', (req, res, next) => { //eslint-disable-line
 });
 
 // TEACHER'S SPACE
-router.get('/:id/teacher', isUserTeacher, (req, res, next) => {
+router.get('/teacher', isUserTeacher, (req, res, next) => {
   const userId = req.session.currentUser._id; // eslint-disable-line
   User.findById(userId)
     .populate('coursesCreated')
@@ -99,55 +98,72 @@ router.get('/:id/teacher', isUserTeacher, (req, res, next) => {
     });
 });
 
+// CREATE COURSES
 router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
   const userId = req.session.currentUser._id; //eslint-disable-line
   const { videoInput } = req.body;
   const videoEmbed = videoInput.replace('watch?v=', 'embed/');
+  const videoId = videoInput.replace('https://www.youtube.com/watch?v=', '');
 
-  if (!req.body.name && !req.body.category && !req.body.resume && !req.body.temary) {
+  if (!req.body.videoInput) {
     req.flash('info', 'The fields name, category, resume and cant be empty!');
     res.redirect(`/profile/${userId}/teacher`);
   } else {
-    const newCourse = {
-      name: req.body.name,
-      teacher: userId,
-      image: req.body.image,
-      category: req.body.category,
-      resume: req.body.resume,
-      temary: req.body.temary,
-      video: videoEmbed,
-      students: [],
-      reviews: [],
-    };
+    youtubeInfo(videoId)
+      .then((videoInfo) => {
+        // console.log(videoInfo);
+        const newCourse = {
+          name: videoInfo.title,
+          teacher: userId,
+          image: videoInfo.thumbnailUrl,
+          category: videoInfo.genre,
+          resume: req.body.resume,
+          temary: req.body.temary,
+          video: videoEmbed,
+          students: [],
+          reviews: [],
+        };
 
-    Course.create(newCourse, (err, docsInserted) => {
-      if (err) {
-        next(err);
-      } else {
-        User.findByIdAndUpdate(userId, { $push: { coursesCreated: docsInserted._id } }, { new: true })
-          .then(() => {
-            req.flash('info', 'Successfully created');
-            res.redirect(`/profile/${userId}/teacher`);
-          })
-          .catch((error) => {
-            next(error);
-          });
-      }
-    });
+        Course.create(newCourse, (err, docsInserted) => {
+          if (err) {
+            next(err);
+          } else {
+            User.findByIdAndUpdate(userId, { $push: { coursesCreated: docsInserted._id } }, { new: true })
+              .then(() => {
+                req.flash('info', 'Successfully created');
+                res.redirect('/profile/teacher');
+              })
+              .catch((error) => {
+                next(error);
+              });
+          }
+        });
+      })
+      .catch((error) => {
+        next(error);
+      });
   }
 });
 
-// autocomplete fields course create
-router.post('/:id/autocomplete', isUserTeacher, (req, res, next) => {
-  const userId = req.session.currentUser._id; //eslint-disable-line
-  let { username, name, lastname, birth, email, phone } = req.body;
-  const { videoInputAuto } = req.body;
-  const videoId = videoInputAuto.replace('https://www.youtube.com/watch?v=', '');
+// EDIT COURSE CREATED
+router.post('/teacher', isUserTeacher, (req, res, next) => {
+  const { name, temary, resume, image, id } = req.body; // eslint-disable-line
+  Course.findByIdAndUpdate(id, { name, temary, resume, image }, { new: true }) // eslint-disable-line
+    .then(() => {
+      req.flash('info', 'Successfully edited');
+      res.redirect('/profile/teacher');
+      // res.redirect(`/courses/${id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
-  youtubeInfo(videoId)
-    .then((videoInfo) =>{
-      console.log(videoInfo.title);
-      res.redirect(`/profile/${userId}/teacher`);
+router.get('/:id/courseedit', isUserTeacher, (req, res, next) => {
+  const courseId = req.params.id;
+  Course.findById(courseId)
+    .then((course) => {
+      res.render('profile/courseedit', course);
     })
     .catch((error) => {
       next(error);

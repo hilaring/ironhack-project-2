@@ -23,6 +23,7 @@
     "morgan": "~1.9.0",
     "nodemailer": "^4.6.8",
     "serve-favicon": "^2.5.0",
+    "youtube-info": "^1.2.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

@@ -1,0 +1,26 @@
+<!-- layout.hbs -->
+<div class="square-content-profile">
+  <h1 class="text-center title-course">EDIT COURSE</h1>
+  <form class="edit-form" action="/profile/teacher" method="post">
+    <div>
+      <p class="title-field">NAME</p>
+      <input class="fields-profile" type="text" name="name" value="{{name}}">
+    </div>
+    <div>
+      <p class="title-field">IMAGE</p>
+      <input class="fields-profile" type="text" name="image" value="{{image}}">
+    </div>
+    <div>
+      <p class="title-field">RESUME</p>
+      <input class="fields-profile" type="text" name="resume" value="{{resume}}">
+    </div>
+    <div>
+      <p class="title-field">TEMARY</p>
+      <input class="fields-profile" type="text" name="temary" value="{{temary}}">
+    </div>
+      <input name="id" value="{{id}}" hidden></input>
+    <button type="submit" class="button-css row align-items-center">
+      <i class="fa fa-save"></i>
+    </button>
+  </form>
+</div>
