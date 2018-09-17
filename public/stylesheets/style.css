@@ -2,7 +2,9 @@
 
 body {
   font: 14px "Montserrat", sans-serif;
-  background-color: #F7F4EA;
+  background-color: #F7F7F7;
+  /* background-color: #F2F4F7; */
+  /* background-color: #F7F4EA; */
   /* background-image: url("/images/background.jpg"); */
   background-attachment: fixed;
 }
@@ -13,7 +15,8 @@ a {
 }
 
 h1 {
-  color: #2239b9;
+  color: #0087BE;;
+  /* color: #2239b9; */
   font-size: 22px;
   text-transform: uppercase;
 }
@@ -133,7 +136,8 @@ li {
 
   .title-course {
     align-content: center;
-    color: #282a35;
+    /* color: #282a35; */
+    color: #E54B4B;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 22px;
@@ -143,7 +147,8 @@ li {
 
   .title-profile {
     align-content: center;
-    color: #282a35;
+    /* color: #282a35; */
+    color: #E54B4B;
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 22px;
@@ -216,7 +221,8 @@ li {
     padding: 8px 8px;
     border-style: none;
     padding-bottom: 5px;
-    border-bottom: 1px solid #0087BE;
+    /* border-bottom: 1px solid #0087BE; */
+    border-bottom: 1px solid #E54B4B;
     width: 90%;
     font-size: 16px;
   }
@@ -244,7 +250,8 @@ li {
   .fields-profile {
     border: none;
     padding-bottom: 5px;
-    border-bottom: 1px solid #0087BE;
+    border-bottom: 1px solid #E54B4B;
+    /* border-bottom: 1px solid #0087BE; */
     width: 100%;
     font-size: 16px;
   }

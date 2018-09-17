@@ -49,7 +49,7 @@ $(document).ready(() => {
             url: `http://localhost:3333/profile/${courseId}/remove`,
             method: 'POST',
             success: (data) => {
-                $('.hide').slideUp();
+                location.reload();
                 console.log('data:', data);
             },
             error: (error) => {

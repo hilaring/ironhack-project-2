@@ -61,7 +61,7 @@ router.get('/sort/:type', (req, res) => {
 
   switch (type) {
     case 'mostStudents':
-      sortCase = { name: -1 };
+      sortCase = { students: -1 };
       break;
     case 'alphabeticalAscending':
       sortCase = { name: 1 };
@@ -109,7 +109,7 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
     .then((course) => {
       if (course.students.indexOf(userId) !== -1) {
         console.log('ya estoy en el curso');
-        req.flash('info', 'ya estas capullo');
+        req.flash('info', 'You are already subscribed to the course');
       } else {
         console.log('no toy!');
         User.findById(userId)

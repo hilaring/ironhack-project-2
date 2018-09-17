@@ -63,6 +63,7 @@ router.post('/:id/delete', isUserLogged, (req, res, next) => {
   User.findByIdAndRemove(id)
     .then(() => {
       req.session.destroy();
+      req.flash('info', 'User removed, we miss you...');
       res.redirect('/');
     })
     .catch((error) => {
