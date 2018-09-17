@@ -55,8 +55,8 @@ router.post('/search', (req, res, next) => {
 });
 
 // SORT COURSES
-router.get('/sort/:type', (req, res) => {
-  const { type } = req.params;
+router.get('/sort/:query', (req, res) => {
+  const { type } = req.query;
   let sortCase = {};
 
   switch (type) {
