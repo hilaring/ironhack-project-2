@@ -53,12 +53,14 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
           })
             .then((newUser) => {
               if (newUser) {
-                const message = 'You create a user in Courstory, start to learn!';
+                const message = `You create the user ${username} in Courstory, start to learn!`;
                 const transporter = nodemailer.createTransport({
                   service: 'Gmail',
                   auth: {
-                    user: 'courstoryweb@gmail.com',
-                    pass: 'ToyStory3',
+                    // user: 'courstoryweb@gmail.com',
+                    user: process.env.NODEMON_EMAIL,
+                    // pass: 'ToyStory3',
+                    pass: process.env.NODEMON_PASS,
                   },
                 });
                 transporter.sendMail({

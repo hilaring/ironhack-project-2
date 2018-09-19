@@ -1,6 +1,7 @@
 /* eslint-disable */
 $(document).ready(() => {
     console.log('jQuery ready')
+// NOTE: ADD COURSE------------------
     $('#add').on('click', () => {
         // console.log('add course btn pressed')
         const courseId = $('#add').attr('value');
@@ -9,8 +10,10 @@ $(document).ready(() => {
             url: `http://localhost:3333/courses/${courseId}/add`,
             method: 'POST',
             success: (data) => {
-                location.reload();
+                // location.reload();
                 // console.log('Data:', data);
+                $('#add').toggleClass('button-css-disable')
+                $('#add').html('Added to your courses!')
             },
             error: (error) => {
                 console.log('error:', error);
@@ -18,20 +21,21 @@ $(document).ready(() => {
         })
     });
 
-    $('.remove-course').on('click', () => {
+// NOTE: REMOVE COURSE-----------------
+    //$('.remove-course').on('click', () => {
+    $('.remove-course').click(function() {
         // console.log('remove course, btn pressed')
-        const courseId = $('.remove-course').attr('value');
-        // console.log(courseId)
+        const courseId = $(this).data('id');
+        $(this).parent().addClass("removed");
 
         $.ajax({
             url: `http://localhost:3333/profile/${courseId}/remove`,
             method: 'POST',
             success: (data) => {
-                location.reload();
-                // console.log('data:', data);
+                $(this).parent().hide();
             },
             error: (error) => {
-                // console.log('error:', error);
+                console.log('error:', error);
             },
         })
 

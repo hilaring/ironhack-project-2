@@ -44,6 +44,16 @@ h3 {
   font-weight: 500;
 }
 
+.button-css-disable {
+  margin: auto;
+  background-color: white;
+  color: #0087BE;
+  padding: 7px 40px;
+  margin-top: 10px;
+  font-weight: 500;
+  border: none;
+}
+
 .button-css-info {
   margin: auto;
   background-color: #0087BE;

@@ -12,6 +12,12 @@ $(document).ready(() => {
       password.attr('type', 'text');
     }
   });
+
+  // const courseId = $('.remove-course').attr('value');
+  // $('.remove-course').on('click', () => {
+  //   $(#courseId).hide()
+  // })
+  
 })
 
 

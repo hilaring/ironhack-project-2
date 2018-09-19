@@ -2,7 +2,7 @@
 <div class="square-content-profile">
   <h1 class="text-center title-course">MY INFORMATION</h1>
   <form class="edit-form" action="/profile/{{_id}}/detail" method="post">
-    <div>
+    <div class="field-detail">
       <p class="title-field">NAME</p>
       <input class="fields-profile" type="text" name="name" value="{{name}}">
     </div>
@@ -12,7 +12,7 @@
     </div>
     <div class="field-detail">
       <p class="title-field">BIRTHDAY</p>
-      <input class="fields-profile" type="text" name="birth" value="{{birth}}">
+      <input class="fields-profile" type="date" name="birth" value="{{birth}}">
     </div>
     <div class="field-detail">
       <p class="title-field">EMAIL</p>

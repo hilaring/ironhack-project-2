@@ -33,12 +33,12 @@
         {{#if stats.length}}
             <ul class="list-group list-group-flush">
             {{#each stats}}
-                <li id="{{courses.id}}"class="list-group-item hide">
+                <li id="{{courses.id}}" class="list-group-item hide">
                     <p>{{courses.name}}</p>
                     <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
                     <label for="checkbox">Complete</label>
                     <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false">
-                    <button type="submit" value="{{this._id}}" class="input-btn remove-course">
+                    <button type="submit" data-id="{{this._id}}" class="input-btn remove-course">
                         <i class="fa fa-trash-o"></i>
                     </button>
                 </li>
@@ -56,30 +56,5 @@
     </div>
     <br>
 </div>
-
-
-
-{{!-- <div>
-    <div class="content-profile">
-        <h2>My courses</h2>
-        {{#if stats.length}}
-            <ul class="list-group list-group-flush">
-            {{#each stats}}
-                <li id="{{courses.id}}"class="list-group-item hide">
-                    <p>{{courses.name}}</p>
-                    <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
-                    <label for="checkbox">Complete</label>
-                    <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false">
-                    <button type="submit" value="{{this._id}}" class="input-btn remove-course">
-                        <i class="fa fa-trash-o"></i>
-                    </button>
-                </li>
-            {{/each}}
-            </ul>
-        {{else}}
-        <p>You don't suscribe at any course yet :(</p>
-        <p><a class="input-btn" href="/courses">Check our awesome courses!</a></p>
-        {{/if}}
-    </div> --}}
 </div>
 </div>
