@@ -1,7 +1,7 @@
 /* eslint-disable */
 $(document).ready(() => {
   // flash message
-  $('.alert-warning').slideUp(2000);
+  $('.alert-warning').delay(3000).slideUp('slow');
 
   //showPassword
   $('#showPassword').on('click', () => {
@@ -19,5 +19,3 @@ $(document).ready(() => {
   // })
   
 })
-
-

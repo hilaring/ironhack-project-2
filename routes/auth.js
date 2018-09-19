@@ -36,7 +36,7 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
     User.findOne({ username })
       .then((user) => {
         if (user) {
-          req.flash('info', 'The username can\'t be repeated :(');
+          req.flash('info', 'The username can\'t be repeate');
           res.redirect('/auth/login');
         } else {
           User.create({
@@ -53,7 +53,7 @@ router.post('/signup', isUserLoggedOut, (req, res, next) => {
           })
             .then((newUser) => {
               if (newUser) {
-                const message = `You create the user ${username} in Courstory, start to learn!`;
+                const message = `User ${username} have been created, start to learn!`;
                 const transporter = nodemailer.createTransport({
                   service: 'Gmail',
                   auth: {

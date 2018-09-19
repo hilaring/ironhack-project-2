@@ -21,25 +21,32 @@
   </div>
 </div>
 <br>
-<h5>Create your course</h5>
-<div>
-  <div>
-    <section>
-      <form action="/profile/{{id}}/createcourse" method="POST">
-        <div>
-          <div class="field-detail">
-            <p class="title-field">YouTube URL</p>
-            <input type="url" class="field-profile text-transition" id="course-video" name="videoInput" placeholder="Url video" pattern="https://www.youtube.com/.+" title="https://www.youtube.com/" required>
-          </div>
-          <div class="field-detail">
-            <input type="text" class="field-profile text-transition" id="course-resume" name="resume" placeholder="Course's resume" required>
-          </div>
-          <div class="field-detail">
-            <textarea class="field-profile text-transition" id="course-resume" name="temary" placeholder="Course's temary" type="text"
-              rows="6" cols="40" required></textarea>
-          </div>
-          <input type="submit" class="button-css row align-items-center" value="Create course"></input>
-      </form>
-    </section>
+<div class="square-content-courses">
+  <div class="content-teacher">
+    <br>
+    <h5>Create your course</h5>
+    <div>
+      <div>
+        <section>
+          <form action="/profile/{{id}}/createcourse" method="POST">
+            <div>
+              <div class="field-detail">
+                <p class="title-field">YouTube URL</p>
+                <input type="url" class="fields-profile text-transition" id="course-video" name="videoInput" placeholder="Url video" pattern="https://www.youtube.com/.+"
+                  title="https://www.youtube.com/" required>
+              </div>
+              <div class="field-detail">
+                <input type="text" class="fields-profile text-transition" id="course-resume" name="resume" placeholder="Course's resume"
+                  required>
+              </div>
+              <div class="field-detail">
+                <textarea class="fields-profile text-transition" id="course-resume" name="temary" placeholder="Course's temary" type="text"
+                  rows="6" cols="40" required></textarea>
+              </div>
+              <input type="submit" class="button-css row align-items-center" value="Create course"></input>
+          </form>
+        </section>
+        </div>
+      </div>
     </div>
   </div>
