@@ -31,10 +31,10 @@
         <div class="title-course course-resume">
             <h2>Reviews</h2>
             <form action="/courses/{{id}}/review" method="post">
-                <div class="col">
+                <div style="width: 100%">
                     <div>
                         <select class="selectpicker show-tick selector" aria-placeholder="Hola" id="rate" name="userRate">
-                            <option value="" disabled selected >- Select your rate -</option>
+                            <option value="" disabled selected >Click for rate it!</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -58,10 +58,10 @@
                 {{#if reviews.length}} {{#each reviews}}
                 <div>
                     {{#if rate}}
-                    <h3>{{author.username}}</h3>
-                    <p class="course-resume">Rate: {{rate}}</p>
+                    <h3 class="usr-comment">{{author.username}}</h3>
+                    <p class="course-resume"><b>Rate:</b> {{rate}}</p>
                     {{/if}}
-                    <p class="course-resume">Comment: {{comment}}</p>
+                    <p class="course-resume"><b>Comment:</b> {{comment}}</p>
 
                     {{/each}} {{else}}
                     <p class="course-resume">Any review yet</p>
