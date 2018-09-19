@@ -84,6 +84,14 @@ li {
   color: white;
 }
 
+.nav-item-logout {
+  font-size: 16px;
+  margin-left: 22px;
+  color: white;
+  font-weight: 600;
+  padding-top: 3px;
+} 
+
 .nav-item:active {
   color: #F7F4EA;
   text-decoration: none;
