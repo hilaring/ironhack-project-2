@@ -26,7 +26,6 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
 const coursesRouter = require('./routes/courses');
-
 const messages = require('./middlewares/messages');
 
 const app = express();

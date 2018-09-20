@@ -1,4 +1,7 @@
 /* eslint-disable */
+// const domain = 'http://localhost:3333';
+const domain = 'https://courstory.herokuapp.com';
+
 $(document).ready(() => {
     console.log('jQuery ready')
 // NOTE: ADD COURSE------------------
@@ -7,7 +10,7 @@ $(document).ready(() => {
         const courseId = $('#add').attr('value');
 
         $.ajax({
-            url: `http://localhost:3333/courses/${courseId}/add`,
+            url: `${domain}/courses/${courseId}/add`,
             method: 'POST',
             success: (data) => {
                 // location.reload();
@@ -27,12 +30,14 @@ $(document).ready(() => {
         // console.log('remove course, btn pressed')
         const courseId = $(this).data('id');
         $(this).parent().addClass("removed");
+        // $(this).parent().slideUp('slow')
 
         $.ajax({
-            url: `http://localhost:3333/profile/${courseId}/remove`,
+            url: `${domain}/profile/${courseId}/remove`,
             method: 'POST',
             success: (data) => {
-                $(this).parent().hide();
+                // $(this).parent().slideDown('slow')
+                $(this).parent().hide()
             },
             error: (error) => {
                 console.log('error:', error);
