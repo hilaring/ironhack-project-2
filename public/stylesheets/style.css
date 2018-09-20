@@ -89,6 +89,11 @@ li {
   text-decoration: none;
 }
 
+.navbar-nav li:last-child {
+  margin-left: -10px;
+  margin-top: 5px;
+}
+
 .navbar-style {
   background-color: #282a35;
 }

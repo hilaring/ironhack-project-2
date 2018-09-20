@@ -115,7 +115,7 @@ router.post('/:id/add', isUserLogged, (req, res, next) => { //eslint-disable-lin
             user.stats.push({ courses: courseId, checked: false });
             user.save()
               .then(() => {
-                req.flash('info', 'Added sucessfully');
+                // req.flash('info', 'Added sucessfully');
                 res.status(200).json({ courseId });
               })
               .catch((error) => {

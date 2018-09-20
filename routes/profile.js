@@ -1,5 +1,6 @@
 const express = require('express');
 const youtubeInfo = require('youtube-info');
+const nodemailer = require('nodemailer');
 const User = require('../models/user'); // eslint-disable-line
 const Course = require('../models/course.js'); // eslint-disable-line
 const isUserLogged = require('../middlewares/isUserLogged');
@@ -19,12 +20,12 @@ router.get('/', isUserLogged, (req, res) => {
 router.post('/:id/detail', isUserLogged, (req, res, next) => {
   const { id } = req.params;
   const { username, name, lastname, birth, email, phone } = req.body; // eslint-disable-line
-  const teacherResponse = req.body;
-  let teacherTrueFalse = false;
+  const teacherResponse = req.body.teacherResponse; // eslint-disable-line
+  let teacherTrueFalse;
 
   if (teacherResponse === 'no') {
     teacherTrueFalse = false;
-  } else {
+  } else if (teacherResponse === 'yes') {
     teacherTrueFalse = true;
   }
 
@@ -63,7 +64,7 @@ router.post('/:id/delete', isUserLogged, (req, res, next) => {
   User.findByIdAndRemove(id)
     .then(() => {
       req.session.destroy();
-      req.flash('info', 'User removed, we miss you...');
+      // req.flash('info', 'User removed, we miss you...');
       res.redirect('/');
     })
     .catch((error) => {
@@ -72,15 +73,15 @@ router.post('/:id/delete', isUserLogged, (req, res, next) => {
 });
 
 // DELETE COURSE IN PROFILE
+// TODO: hacer pull de lista de estudiantes de cursos
 router.post('/:id/remove', isUserLogged, (req, res, next) => { //eslint-disable-line
   const userID = req.session.currentUser._id; //eslint-disable-line
   const courseId = req.params.id;
   Course.findByIdAndUpdate(courseId, { $pull: { students: userID } }, { new: true })
     .then(() => {
       User.findByIdAndUpdate(userID, { $pull: { stats: { _id: courseId } } }, { new: true })
-        // TODO: hacer pull de lista de estudiantes de cursos
         .exec((err, result) => {
-          req.flash('info', 'Successfully deleted');
+          // req.flash('info', 'Successfully deleted');
           res.status(200).json(result);
         });
     });
@@ -102,6 +103,8 @@ router.get('/teacher', isUserTeacher, (req, res, next) => {
 // CREATE COURSES
 router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
   const userId = req.session.currentUser._id; //eslint-disable-line
+  const userMail = req.session.currentUser.email;
+  const userUsername = req.session.currentUser.username;
   const { videoInput } = req.body;
   const videoEmbed = videoInput.replace('watch?v=', 'embed/');
   const videoId = videoInput.replace('https://www.youtube.com/watch?v=', '');
@@ -126,11 +129,29 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
         };
 
         Course.create(newCourse, (err, docsInserted) => {
+          const course = newCourse.name;
+          const img = newCourse.image;
           if (err) {
             next(err);
           } else {
             User.findByIdAndUpdate(userId, { $push: { coursesCreated: docsInserted._id } }, { new: true })
               .then(() => {
+                const message = `You create the new course <h3>${course}</h3><br> <img src="${img}" alt="course-image" height="175" width="300"> in Courstory!`;
+                const transporter = nodemailer.createTransport({
+                  service: 'Gmail',
+                  auth: {
+                    user: process.env.NODEMON_EMAIL,
+                    pass: process.env.NODEMON_PASS,
+                  },
+                });
+                transporter.sendMail({
+                  from: '"Courstory e-Learning Platform" <courstoryweb@gmail.com>',
+                  to: userMail,
+                  subject: `Thanks, ${userUsername}, for create your course`,
+                  text: message,
+                  html: `<b>${message}</b>`,
+                });
+
                 req.flash('info', 'Successfully created');
                 res.redirect('/profile/teacher');
               })
