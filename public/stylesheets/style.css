@@ -1,9 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700");
 
+a:focus {text-decoration: none;}
+a:focus {outline:0;}
+button:focus {outline:0;}
+input:focus {outline:0;}
+textarea:focus {outline:0;}
+
 body {
   font: 14px "Montserrat", sans-serif;
   background-color: #F7F7F7;
-  /* background-image: url("/images/background.jpg"); */
+  /* background-image: url("/images/background-geom.jpg"); */
   background-attachment: fixed;
 }
 
@@ -86,7 +92,7 @@ li {
 
 .nav-item-logout {
   font-size: 16px;
-  margin-left: 22px;
+  margin-left: 31px;
   color: white;
   font-weight: 600;
   padding-top: 3px;
@@ -355,6 +361,11 @@ li {
     margin-right: 20px;
   }
 
+  .course-created-name {
+    margin-top: 40px;
+    font-weight: bolder;
+  }
+
   .icon-navbar {
     color: white;
   }
@@ -381,13 +392,14 @@ li {
   }
 
   .course-info {
+    margin-top: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
 
   .selector {
-    width: 100%;
+    /* width: 100%; */
     padding: 5px 0px;
     border-bottom: 1px solid #0087BE;
     background-color: white;
@@ -400,7 +412,17 @@ li {
   }
 
   .usr-comment {
-    text-decoration-line: underline;
+    margin-top: 40px;
+    color: #0087BE;
+    /* text-decoration-line: underline; */
+  }
+
+  #teacher-space {
+    font-size: 20px;
+  }
+
+  #any-review {
+    margin-top: 40px;
   }
   
   .footer-menu {

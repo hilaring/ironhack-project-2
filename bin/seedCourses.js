@@ -18,6 +18,17 @@ const courses = [
     reviews: [],
   },
   {
+    name: 'Angular desde cero',
+    teacher: '5b9ce357676ac112ec523c8d',
+    image: 'https://udemy-images.udemy.com/course/750x422/1075334_8b5f_4.jpg',
+    category: 'Angular',
+    resume: 'Angular es un framework de front-end impulsado por Google. Creado para desarrollar aplicaciones web, aplicaciones móviles o realizar procesos del lado del servidor utilizando NodeJS.',
+    temary: 'Este curso se enfoca en llevarte de la mano desde cero hasta poder crear aplicaciones de todo tipo, que van desde páginas web de una sola página (SPA - single page application) hasta conectarnos a una base de datos para realizar proceso de inserción, actualización, eliminación y selección de información. Este curso contiene todo lo que tu necesitas para poder crear aplicaciones con este framework tan potente y veloz.',
+    video: 'https://www.youtube.com/embed/J08zrkhfNf4',
+    students: [],
+    reviews: [],
+  },
+  {
     name: 'Google AdWords',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-online-adwords-300x157.png',
@@ -51,7 +62,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de Javascript',
+    name: 'Javascript',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-javascript-300x157.png',
     category: ['Development'],
@@ -62,7 +73,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de JavaScript para HTML',
+    name: 'JavaScript para HTML',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-javascript-para-html-300x157.jpg',
     category: ['Development', 'Web design'],
@@ -73,7 +84,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de Bootstrap',
+    name: 'Bootstrap',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-bootstrap-300x157.jpg',
     category: ['Web design'],
@@ -84,7 +95,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de HTML5',
+    name: 'HTML5',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-html5-300x157.jpg',
     category: ['Web design'],
@@ -95,7 +106,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de CSS',
+    name: 'CSS',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-css-intermedio-300x157.jpg',
     category: ['Web design'],
@@ -106,7 +117,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de PHP',
+    name: 'PHP',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-php-300x157.png',
     category: ['Web development', 'Web design'],
@@ -117,7 +128,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de SQL',
+    name: 'SQL',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-sql-300x157.jpg',
     category: ['WordPress', 'SEO'],
@@ -128,7 +139,7 @@ const courses = [
     reviews: [],
   },
   {
-    name: 'Curso de Swift',
+    name: 'Swift',
     teacher: '5b9ce357676ac112ec523c8d',
     image: 'https://boluda.com/files/curso-swift-300x157.png',
     category: ['Development'],

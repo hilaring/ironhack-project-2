@@ -1,9 +1,9 @@
 /* eslint-disable */
 $(document).ready(() => {
-  // flash message
+  // FLASH MESSAGE
   $('.alert-warning').delay(3000).slideUp('slow');
 
-  //showPassword
+  //SHOW PASSWORD
   $('#showPassword').on('click', () => {
     const password = $('#inputPassword')
     if (password.attr('type') === 'text') {
@@ -13,18 +13,12 @@ $(document).ready(() => {
     }
   });
 
-  // console.log(window.location.pathname)
+  // NAVBAR MENU COLOR
   var path = window.location.pathname.split("/")
-  var generalPath = path[1]
-  console.log(path)
-  // console.log('general:' + generalPath)
+  var currentPath = path[1]
 
-  // if (generalPath === 'courses') {
-  //   $("#courses").css("color", "#0087BE");
-  //   // console.log($("#courses"))
-  // }
-  switch (generalPath) {
-    case '':
+  switch (currentPath) {
+    case '': // home case
       $("#home").css("color", "#0087BE");
       break;
     case 'courses':
@@ -39,5 +33,4 @@ $(document).ready(() => {
     default:
       $(".nav-item").css("color", "white");
   }
-  
-})
+});

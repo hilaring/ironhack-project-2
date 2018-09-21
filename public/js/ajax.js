@@ -1,6 +1,6 @@
 /* eslint-disable */
-// const domain = 'http://localhost:3333';
-const domain = 'https://courstory.herokuapp.com';
+const domain = 'http://localhost:3333';
+// const domain = 'https://courstory.herokuapp.com';
 
 $(document).ready(() => {
     console.log('jQuery ready')

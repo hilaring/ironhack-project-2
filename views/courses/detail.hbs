@@ -24,7 +24,7 @@
             </div>
         </div>
         <button id="add" type="submit" value="{{_id}}" class="row align-items-center button-css">
-            <i id="add-icon" class="fa fa-heart"></i>
+            <i id="add-icon" class="fa fa-plus"></i>
         </button>
     </div>
     <div class="square-content-profile">
@@ -34,12 +34,12 @@
                 <div style="width: 100%">
                     <div>
                         <select class="selectpicker show-tick selector" aria-placeholder="Hola" id="rate" name="userRate">
-                            <option value="" disabled selected >Click for rate it!</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option class="selector-option" value="" disabled selected >Rate it!</option>
+                            <option class="selector-option" value="1">1</option>
+                            <option class="selector-option" value="2">2</option>
+                            <option class="selector-option" value="3">3</option>
+                            <option class="selector-option" value="4">4</option>
+                            <option class="selector-option" value="5">5</option>
                         </select>
                     </div>
                 </div>
@@ -55,16 +55,18 @@
                 </div>
             </form>
             <div>
-                {{#if reviews.length}} {{#each reviews}}
-                <div>
-                    {{#if rate}}
-                    <h3 class="usr-comment">{{author.username}}</h3>
-                    <p class="course-resume"><b>Rate:</b> {{rate}}</p>
-                    {{/if}}
-                    <p class="course-resume"><b>Comment:</b> {{comment}}</p>
-
-                    {{/each}} {{else}}
-                    <p class="course-resume">Any review yet</p>
+                {{#if reviews.length}}
+                    {{#each reviews}}
+                    <div>
+                        {{#if rate}}
+                        <h3 class="usr-comment">{{author.username}}</h3>
+                        <p class="course-resume"><b>Rate:</b> {{rate}}</p>
+                        {{/if}}
+                        <p class="course-resume"><b>Comment:</b> {{comment}}</p>
+                        <br>
+                    {{/each}} 
+                {{else}}
+                    <p class="course-resume text-center" id="any-review">Any review yet :(</p>
                 </div>
                 {{/if}}
             </div>

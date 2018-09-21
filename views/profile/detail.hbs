@@ -8,12 +8,13 @@
             <span class="fields-profile">{{username}}</span>
         </div>
         <div class="field-detail fields-profile">
-            <p class="title-field">EMAIL</p>
-            <span class="fields-profile">{{email}}</span>
+            <p class="title-field">Name</p>
+            <span class="fields-profile">{{name}}</span>
+            <span class="fields-profile">{{lastname}}</span>
         </div>
         <div class="field-detail fields-profile">
-            <p class="title-field">PHONE</p>
-            <span class="fields-profile">{{phone}}</span>
+            <p class="title-field">EMAIL</p>
+            <span class="fields-profile">{{email}}</span>
         </div>
         <br>
     <div>
@@ -21,12 +22,13 @@
             <a class="see-more-btn" href="/profile/{{_id}}/edit">Edit</a>
         </div>
         <br>
-        {{!-- <div class="row align-items-center">
-            <form action="/profile/{{_id}}/delete" method="post">
-            <input class="info-profile see-more-btn" type="submit" value="Delete Account">
-            <p>Cambiar boton a EDIT</p>
-        </form>
-        </div> --}}
+        <br>
+    <div>
+        {{#equal teacher true}}
+        <p class="text-center">Create a course, teacher!</p>
+        <p id="teacher-space"class="text-center"><a class="input-btn" href="/profile/teacher">Teacher's Space</a></p>
+        {{/equal}}
+    </div>
     </div>
     <div class="content-profile">
         <h2>Your courses</h2>
@@ -35,12 +37,13 @@
             {{#each stats}}
                 <li id="{{courses.id}}" class="list-group-item hide">
                     <p>{{courses.name}}</p>
-                    <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
-                    <label for="checkbox">Complete</label>
-                    <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false">
-                    <button type="submit" data-id="{{courses.id}}" class="input-btn remove-course">
+                    Go to <a class="input-btn" href="courses/{{courses.id}}">Study!</a>
+                    <button type="submit" data-id="{{this._id}}" class="input-btn remove-course">
+                    {{!-- <button type="submit" data-id="{{courses.id}}" class="input-btn remove-course"> --}}
                         <i class="fa fa-trash-o"></i>
                     </button>
+                    {{!-- <label for="checkbox">Complete</label>
+                    <input id="checkComplete" css="checkboxInput" type="checkbox" name="checkComplete" value="false"> --}}
                 </li>
             {{/each}}
             </ul>
@@ -49,12 +52,6 @@
         <p><a class="input-btn" href="/courses">Check our awesome courses!</a></p>
         {{/if}}
     </div>
-    <div>
-    {{#equal teacher true}}
-        <p class="text-center"><a class="input-btn" href="/profile/teacher">Teacher's Space</a></p>
-    {{/equal}}
-    </div>
-    <br>
 </div>
 </div>
 </div>

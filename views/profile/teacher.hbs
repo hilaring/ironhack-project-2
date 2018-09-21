@@ -3,15 +3,15 @@
   <h1 class="title-page text-center">Teacher's Space</h1>
   <div class="content-teacher">
     <br>
-    <h2>Created courses</h2>
+    <h2>Courses created</h2>
     {{#if coursesCreated.length}}
     <ul>
       {{#each coursesCreated}}
-      <li>
-        <p>{{this.name}}</p>
-        <a class="input-btn" href="/courses/{{this.id}}">Go to your course</a>
+      <li class="course-created">
+        <p class="course-created-name">{{this.name}}</p>
         <p>Number of students: {{this.students.length}}</p>
         <a class="input-btn" href="/profile/{{id}}/courseedit">Edit course</a>
+        <a class="input-btn col" href="/courses/{{this.id}}">Go to your course</a>
       </li>
       {{/each}}
     </ul>
@@ -32,7 +32,7 @@
             <div>
               <div class="field-detail">
                 <p class="title-field">YouTube URL</p>
-                <input type="url" class="fields-profile text-transition" id="course-video" name="videoInput" placeholder="Url video" pattern="https://www.youtube.com/.+"
+                <input type="url" class="fields-profile text-transition" id="course-video" name="videoInput" placeholder="Video" pattern="https://www.youtube.com/.+"
                   title="https://www.youtube.com/" required>
               </div>
               <div class="field-detail">

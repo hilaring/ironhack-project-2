@@ -5,10 +5,10 @@
     <form action="/auth/signup" method="POST">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <input type="text" class="form-control text-transition" id="username" name="username" placeholder="Username">
+          <input type="text" class="form-control text-transition" id="username" name="username" placeholder="Username" required>
         </div>
         <div class="form-group col-md-6">
-          <input type="email" class="form-control text-transition" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Enter a valid email: characters@characters.domain">
+          <input type="email" class="form-control text-transition" id="email" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Enter a valid email: characters@characters.domain" required>
         </div>
         <div class="form-group col-md-6">
           <input type="text" class="form-control text-transition" id="name" name="name" placeholder="Name">
@@ -23,7 +23,7 @@
           <input type="tel" class="form-control text-transition" id="phone" name="phone" placeholder="Phone" pattern=".{9,}" title="Nine or more characters">
         </div>
         <div class="form-group col-md-6">
-          <input type="password" class="form-control text-transition" id="password" name="password" placeholder="Password">
+          <input type="password" class="form-control text-transition" id="password" name="password" placeholder="Password" required>
         </div>
         <div class="form-group col-md-6">
           <label for="teacherResponse">Want to be a teacher?</label>

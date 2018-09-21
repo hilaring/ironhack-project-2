@@ -136,7 +136,7 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
           } else {
             User.findByIdAndUpdate(userId, { $push: { coursesCreated: docsInserted._id } }, { new: true })
               .then(() => {
-                const message = `You create the new course <h3>${course}</h3><br> <img src="${img}" alt="course-image" height="175" width="300"> in Courstory!`;
+                const message = `You create the new course <h3>${course}</h3><br> <img src="${img}" alt="course-image" height="175" width="300">`;
                 const transporter = nodemailer.createTransport({
                   service: 'Gmail',
                   auth: {
@@ -147,7 +147,7 @@ router.post('/:id/createcourse', isUserTeacher, (req, res, next) => {
                 transporter.sendMail({
                   from: '"Courstory e-Learning Platform" <courstoryweb@gmail.com>',
                   to: userMail,
-                  subject: `Thanks, ${userUsername}, for create your course`,
+                  subject: `Thanks, ${userUsername}, for make Courstory big`,
                   text: message,
                   html: `<b>${message}</b>`,
                 });
