@@ -6,15 +6,12 @@ $(document).ready(() => {
     console.log('jQuery ready')
 // NOTE: ADD COURSE------------------
     $('#add').on('click', () => {
-        // console.log('add course btn pressed')
         const courseId = $('#add').attr('value');
 
         $.ajax({
             url: `${domain}/courses/${courseId}/add`,
             method: 'POST',
             success: (data) => {
-                // location.reload();
-                // console.log('Data:', data);
                 $('#add').toggleClass('button-css-disable')
                 $('#add').html('Added to your courses!')
             },
