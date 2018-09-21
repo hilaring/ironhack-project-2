@@ -103,7 +103,7 @@ The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/laurarojeda/ironhack-project-2)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://courstory.herokuapp.com/)
 
 ### Slides.com
 
