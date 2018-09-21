@@ -10,7 +10,7 @@ $(document).ready(() => {
         const courseId = $('#add').attr('value');
 
         $.ajax({
-            url: `${domain}/courses/${courseId}/add`,
+            url: `https://courstory.herokuapp.com/courses/${courseId}/add`,
             method: 'POST',
             success: (data) => {
                 // location.reload();
@@ -33,7 +33,7 @@ $(document).ready(() => {
         // $(this).parent().slideUp('slow')
 
         $.ajax({
-            url: `${domain}/profile/${courseId}/remove`,
+            url: `https://courstory.herokuapp.com/profile/${courseId}/remove`,
             method: 'POST',
             success: (data) => {
                 // $(this).parent().slideDown('slow')
